@@ -1,0 +1,12 @@
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+
+--type-add
+rtl:include:vhdl,verilog
+
+--type-add
+vo:*.vo
+
+# Because who cares about case!?
+--smart-case
