@@ -5,9 +5,11 @@ Configuration instructions and files for setting up a Linux developer environmen
 
 1. Setup [fonts](#fonts)
 2. Copy dotfiles
-  * Possibly rename `.bashrc` to `.bashrc.$USER`
 3. Install [CLI utilties](#cli-utilities)
-  * Allow fzf install to modify `.bashrc` to source its scripts
+
+Some additional considerations:
+* Possibly rename `.bashrc` to `.bashrc.$USER`
+* Allow fzf install to modify `.bashrc` to source its scripts
 
 ## Details
 

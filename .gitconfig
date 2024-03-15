@@ -1,0 +1,65 @@
+[user]
+    name = Daniel Gao
+    email = daniel.gao.work@gmail.com
+[core]
+    pager = less -FRSX
+    editor = nvim
+
+    whitespace = trailing-space,space-before-tab
+
+    # Unix line endings are preferred
+    # Override in .gitattributes with the text=<> and eol=<> if needed
+    autocrlf = input
+    safecrlf = true
+
+    # Ignore file permission changes
+    filemode = false
+
+    # Define global .gitignore
+    excludesFile = ~/.gitignore
+[commit]
+    verbose = true
+[diff]
+    algorithm = histogram
+[interactive]
+    singleKey = true
+[merge]
+    conflictStyle = zdiff3
+[rebase]
+    autosquash = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[help]
+    autocorrect = prompt
+
+[alias]
+    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+
+    ap = add -p
+    br = branch
+    ci = commit
+    co = checkout
+    cp = cherry-pick
+    ff = merge --ff-only
+    rc = rebase --continue
+    ri = rebase --interactive
+    st = status
+    up = remote update -p
+
+    fixup = !sh -c 'git commit -a -m \"fixup! $(git log -1 --format='%s' $@)\"' -
+    squash = !sh -c 'git commit -a -m \"squash! $(git log -1 --format='%s' $@)\"' -
+
+    # Pretty git log
+    # https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
+    adog = log --all --decorate --oneline --graph
+    lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+    lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    lg = lg1
+
+# URL Aliases
+# Usage: git clone gh:user/repo
+[url "https://github.com/"]
+    insteadOf = gh:
+[url "https://gist.github.com/"]
+    insteadOf = gist:
