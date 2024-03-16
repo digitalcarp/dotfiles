@@ -24,7 +24,9 @@
 [interactive]
     singleKey = true
 [merge]
-    conflictStyle = zdiff3
+    conflictStyle = diff3
+    # git version >=2.35
+    # conflictStyle = zdiff3
 [rebase]
     autosquash = true
 [rerere]

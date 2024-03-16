@@ -21,7 +21,7 @@ If the environment does not allow sudo for installing programs, consider [Linuxb
 * [ripgrep](https://github.com/BurntSushi/ripgrep) - faster grep with better defaults
 * [fd-find](https://github.com/sharkdp/fd) - faster find with better defaults
 * [fzf](https://github.com/junegunn/fzf) - fuzzy finder w/ rg and fd integration
-* [neovim](https://github.com/neovim/neovim) - vim text editor
+* [neovim (>=0.9.4)](https://github.com/neovim/neovim) - vim text editor
 * [tmux (>=3.2)](https://github.com/tmux/tmux/wiki) - terminal multiplexer (pre-installed version may be old)
 
 #### Optional Utilities
