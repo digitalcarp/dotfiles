@@ -76,7 +76,26 @@ set.splitbelow = true
 set.splitright = true
 
 -- Reopen files at last location
-vim.cmd([[autocmd BufReadPost * autocmd FileType ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
+vim.api.nvim_create_autocmd(
+  {'BufReadPost'},
+  {
+    pattern = {'*'},
+    callback = function()
+      local ft = vim.opt_local.filetype:get()
+      -- Ignore git messages
+      if (ft:match('commit') or ft:match('rebase')) then
+        return
+      end
+      -- Go to position of last saved edit
+      local markpos = vim.api.nvim_buf_get_mark(0,'"')
+      local line = markpos[1]
+      local col = markpos[2]
+      if (line > 1) and (line <= vim.api.nvim_buf_line_count(0)) then
+        vim.api.nvim_win_set_cursor(0,{line,col})
+      end
+    end
+  }
+)
 
 ------------
 -- Remaps --
