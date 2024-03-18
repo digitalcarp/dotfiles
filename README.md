@@ -4,8 +4,9 @@ Configuration instructions and files for setting up a Linux developer environmen
 ## Setup
 
 1. Setup [fonts](#fonts)
-2. Copy dotfiles
-3. Install [CLI utilties](#cli-utilities)
+2. Setup terminal [colorscheme](#colorscheme)
+3. Copy dotfiles
+4. Install [CLI utilties](#cli-utilities)
 
 Some additional considerations:
 * Possibly rename `.bashrc` to `.bashrc.$USER`
@@ -36,5 +37,6 @@ Install a patched font from [Nerd Fonts](https://www.nerdfonts.com/font-download
 * [gruvbox dark hard](https://github.com/morhetz/gruvbox)
   * [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) - see neovim config
   * [xfce4-terminal](https://github.com/morhetz/gruvbox-contrib/blob/master/xfce4-terminal/gruvbox-dark-hard.theme)
+  * [tmux-gruvbox](https://github.com/egel/tmux-gruvbox/blob/main/tmux-gruvbox-dark.conf) - slightly modified
 
-I'm uncertain where I sourced `.dircolors` from. The author credit is in the file. See the `.bashrc` file for how it is loaded.
+The terminal colorscheme requires additional work on top of copying dotfiles. I'm uncertain where I sourced `.dircolors` from. The author credit is in the file. See the `.bashrc` file for how it is loaded.
