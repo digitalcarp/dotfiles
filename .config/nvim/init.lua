@@ -53,7 +53,8 @@ set.expandtab = true
 set.linebreak = true
 set.wrap = false
 
-set.smartindent = true
+-- Either use treesitter indent or this but not both
+-- set.smartindent = true
 
 ----------------
 -- Navigation --
@@ -101,6 +102,9 @@ Map("n", "<leader>Y", "\"+Y")
 
 -- No Ex mode
 Map("n", "Q", "<Nop>")
+
+-- Toggle search highlighting
+Map("n", "<CR>", "<cmd>nohlsearch<CR>")
 
 -------------
 -- Plugins --
