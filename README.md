@@ -30,7 +30,16 @@ If the environment does not allow sudo for installing programs, consider [Linuxb
 * [bat](https://github.com/sharkdp/bat) - pretty cat (if not used modify fzf opts in `.bashrc`
 
 ### Fonts
-Install a patched font from [Nerd Fonts](https://www.nerdfonts.com/font-downloads) like DejaVu Sans Mono. Place the extracted files in a directory like `~/.fonts`.
+For regular text, use Open Sans Regular. For monospace fonts, install a patched font from [Nerd Fonts](https://www.nerdfonts.com/font-downloads).
+
+Install DejaVu Sans Mono by placing `.ttf` files in a directory like `~/.fonts` or `C:/Windows/Fonts`.
+
+Use a relatively big font size in terminals (18 or 20).
+
+Consider one of the following DPI:
+* 96 (100%)
+* 120 (125%)
+* 144 (150%)
 
 ### Colorscheme
 
