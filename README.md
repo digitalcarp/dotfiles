@@ -45,7 +45,8 @@ Consider one of the following DPI:
 
 * [gruvbox dark hard](https://github.com/morhetz/gruvbox)
   * [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) - see neovim config
-  * [xfce4-terminal](https://github.com/morhetz/gruvbox-contrib/blob/master/xfce4-terminal/gruvbox-dark-hard.theme)
   * [tmux-gruvbox](https://github.com/egel/tmux-gruvbox/blob/main/tmux-gruvbox-dark.conf) - slightly modified
+  * [xfce4-terminal](https://github.com/morhetz/gruvbox-contrib/blob/master/xfce4-terminal/gruvbox-dark-hard.theme)
+  * [Windows Terminal](https://gist.github.com/davialexandre/1179070118b22d830739efee4721972d)
 
 The terminal colorscheme requires additional work on top of copying dotfiles. I'm uncertain where I sourced `.dircolors` from. The author credit is in the file. See the `.bashrc` file for how it is loaded.
