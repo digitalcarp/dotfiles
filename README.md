@@ -28,6 +28,7 @@ If the environment does not allow sudo for installing programs, consider [Linuxb
 #### Optional Utilities
 
 * [bat](https://github.com/sharkdp/bat) - pretty cat (if not used modify fzf opts in `.bashrc`
+* [just](https://github.com/casey/just) - command runner
 
 ### Fonts
 For regular text, use Open Sans Regular. For monospace fonts, install a patched font from [Nerd Fonts](https://www.nerdfonts.com/font-downloads).
