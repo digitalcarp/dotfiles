@@ -300,6 +300,7 @@
                                   55 72
 
 #define LT_TAPPING_TERM_MS 250
+#define TAP_DANCE_TAPPING_TERM_MS 200
 
 #define HRM_TAP_TERM_MS 280
 #define HRM_FAST_TAP_TERM_MS 200
@@ -378,7 +379,7 @@ behaviors {
     // Format: &hm_l <HOLD> <TAP>
     hm_l: home_row_mods_left {
         HOME_ROW_MOD_PROPS(HRM_TAP_TERM_MS)
-        
+
         bindings = <&kp>, <&kp>;
         hold-trigger-key-positions = <RIGHT_HAND_KEYS RIGHT_THUMB_KEYS>;
     };
@@ -445,8 +446,20 @@ behaviors {
     td_sk_ls_enter: tap_dance_sticky_key_left_shift_enter {
         compatible = "zmk,behavior-tap-dance";
         #binding-cells = <0>;
-        tapping-term-ms = <200>;
+        tapping-term-ms = <TAP_DANCE_TAPPING_TERM_MS>;
         bindings = <&mt LSHIFT ENTER>, <&kp ENTER>;
+    };
+    td_lt_num_bksp: tap_dance_layer_number_backspace {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <TAP_DANCE_TAPPING_TERM_MS>;
+        bindings = <&lt LAYER_Number BSPC>, <&kp BSPC>;
+    };
+    td_lt_sym_spc: tap_dance_layer_symbol_space {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <TAP_DANCE_TAPPING_TERM_MS>;
+        bindings = <&lt LAYER_Symbol SPACE>, <&kp SPACE>;
     };
 
     aksl: adaptive_key_sticky_layer {
@@ -572,12 +585,12 @@ combos {
 
         layer_Base {
             bindings = <
-        &kp LG(LS(S))        &trans        &trans         &trans                              &trans                                                                                                                             &kp F1         &kp F11         &kp F12    &kp LC(N1)  &kp LC(N2)
-               &trans        &trans        &trans         &kp N1                              &trans  &trans                                                                                 &trans                              &trans          &kp N0          &trans        &trans      &trans
-               &trans         &kp J         &AK_G          &AK_M                               &AK_P   &kp V                                                                         &as COLON SEMI                        &as AMPS DOT  &as STAR EQUAL  &as QMARK EXCL   &as DQT SQT      &trans
-                &kp Z  &hm_l LGUI R  &hm_l LALT S  &hm_l LCTRL N  &hm_l_akd LSHIFT MACRO_PLACEHOLDER   &AK_B                                                                         &as FSLH COMMA  &hm_r_aka RSHIFT MACRO_PLACEHOLDER   &hm_r RCTRL E    &hm_r LALT I  &hm_r LGUI H       &kp Q
-            &kp LC(A)         &kp X         &kp F          &kp L                               &AK_C   &kp W  &lt 4 ESC     &kp DEL  &trans  &trans  &kp LSHFT  &td_sk_ls_enter  &as KP_MINUS UNDER                               &AK_U           &kp O           &kp Y         &kp K   &kp PG_UP
- &magic LAYER_Magic 0      &kp LEFT        &kp UP       &kp DOWN                           &kp RIGHT            &lt 5 T  &lt 3 BSPC  &lower  &lower  &lt 6 TAB      &lt 2 SPACE                                                &kp LEFT        &kp DOWN          &kp UP     &kp RIGHT   &kp PG_DN
+        &kp LG(LS(S))        &trans        &trans         &trans          &trans                                                                                                                                  &kp F1         &kp F11         &kp F12    &kp LC(N1)  &kp LC(N2)
+               &trans        &trans        &trans         &kp N1          &trans  &trans                                                                                      &trans                              &trans          &kp N0          &trans        &trans      &trans
+               &trans         &kp J         &AK_G          &AK_M           &AK_P   &kp V                                                                              &as COLON SEMI                        &as AMPS DOT  &as STAR EQUAL  &as QMARK EXCL   &as DQT SQT      &trans
+                &kp Z  &hm_l LGUI R  &hm_l LALT S  &hm_l LCTRL N  &hm_l LSHIFT D   &AK_B                                                                              &as FSLH COMMA  &hm_r_aka RSHIFT MACRO_PLACEHOLDER   &hm_r RCTRL E    &hm_r LALT I  &hm_r LGUI H       &kp Q
+            &kp LC(A)         &kp X         &kp F          &kp L           &AK_C   &kp W  &lt 4 ESC          &kp DEL  &trans  &trans  &kp LSHFT  &td_sk_ls_enter  &as KP_MINUS UNDER                               &AK_U           &kp O           &kp Y         &kp K   &kp PG_UP
+ &magic LAYER_Magic 0      &kp LEFT        &kp UP       &kp DOWN       &kp RIGHT            &lt 5 T  &td_lt_num_bksp  &lower  &lower  &lt 6 TAB   &td_lt_sym_spc                                                &kp LEFT        &kp DOWN          &kp UP     &kp RIGHT   &kp PG_DN
             >;
         };
 
@@ -596,7 +609,7 @@ combos {
             bindings = <
                &trans     &trans     &trans     &trans    &trans                                                                                                  &trans     &trans     &trans  &trans  &trans
             &kp GRAVE     &trans     &trans     &trans    &trans     &trans                                                                            &trans     &trans     &trans     &trans  &trans  &trans
-              &kp SQT   &kp LBKT   &kp LBRC   &kp RBRC  &kp RBKT   &kp PLUS                                                                            &trans   &kp FSLH   &kp STAR   &kp HASH  &trans  &trans
+              &kp SQT   &kp LBKT   &kp LBRC   &kp RBRC  &kp RBKT   &kp PLUS                                                                            &trans   &kp AMPS   &kp STAR   &kp HASH  &trans  &trans
              &kp EXCL  &kp CARET   &kp LPAR   &kp RPAR  &kp DLLR  &kp QMARK                                                                            &trans  &kp LSHFT  &kp LCTRL  &kp GRAVE  &trans  &trans
              &kp HASH     &kp LT  &kp EQUAL  &kp MINUS    &kp GT   &kp STAR   &kp BSLH                         &trans  &trans  &trans  &trans  &trans  &trans     &trans     &trans     &trans  &trans  &trans
  &magic LAYER_Magic 0  &kp TILDE   &kp PIPE   &kp FSLH   &kp DOT             &kp PRCNT  &ascc MACRO_PLACEHOLDER COLON  &kp AT  &tog 2  &trans  &trans             &trans     &trans     &trans  &trans  &trans
@@ -605,12 +618,12 @@ combos {
 
         layer_Number {
             bindings = <
-               &trans  &trans    &trans     &trans     &trans                                                                                 &trans     &trans    &trans     &trans     &trans
-               &trans  &trans    &trans     &trans     &trans       &trans                                                      &kp TILDE  &kp CARET   &kp HASH  &kp DLLR     &kp AT     &trans
-               &trans  &trans    &trans      &kp K  &kp LS(G)       &trans                                                      &kp PRCNT     &kp N7     &kp N8    &kp N9  &kp COLON      &kp K
-           &kp KP_NUM  &trans  &kp LALT  &kp LCTRL  &kp LSHFT  &tmux_cmd S                                                       &kp PLUS     &kp N4     &kp N5    &kp N6  &kp MINUS      &kp J
-               &trans  &trans    &trans      &kp J  &kp LC(A)  &tmux_cmd Q  &trans  &trans  &trans  &trans  &kp LC(A)  &kp DOT   &kp STAR     &kp N1     &kp N2    &kp N3   &kp FSLH  &kp LS(G)
- &magic LAYER_Magic 0  &trans    &trans     &trans     &trans               &trans  &trans  &tog 3  &trans  &kp COMMA   &kp N0                &kp LT  &kp EQUAL    &kp GT      &kp T      &kp F
+               &trans  &trans     &trans     &trans     &trans                                                                                 &trans     &trans    &trans     &trans     &trans
+               &trans  &trans     &trans     &trans     &trans       &trans                                                      &kp TILDE  &kp CARET   &kp HASH  &kp DLLR     &kp AT     &trans
+               &trans  &trans  &kp LS(G)      &kp K     &trans       &trans                                                      &kp PRCNT     &kp N7     &kp N8    &kp N9  &kp COLON      &kp K
+           &kp KP_NUM  &trans   &kp LALT  &kp LCTRL  &kp LSHFT  &tmux_cmd S                                                       &kp PLUS     &kp N4     &kp N5    &kp N6  &kp MINUS      &kp J
+               &trans  &trans     &trans      &kp J  &kp LC(A)  &tmux_cmd Q  &trans  &trans  &trans  &trans  &kp LC(A)  &kp DOT   &kp STAR     &kp N1     &kp N2    &kp N3   &kp FSLH  &kp LS(G)
+ &magic LAYER_Magic 0  &trans     &trans     &trans     &trans               &trans  &trans  &tog 3  &trans  &kp COMMA   &kp N0                &kp LT  &kp EQUAL    &kp GT      &kp T      &kp F
             >;
         };
 
@@ -619,20 +632,20 @@ combos {
                &trans  &trans  &trans  &trans  &trans                                                                                           &trans                          &trans                              &trans  &trans           &trans
                &trans  &trans  &trans  &trans  &trans  &trans                                                  &kp DEL                         &kp F10                         &kp F11                             &kp F12  &trans           &trans
                &trans  &trans  &trans  &trans  &trans  &trans                                                  &kp INS                          &kp F7                          &kp F8                              &kp F9  &trans           &trans
-             &kp CAPS  &trans  &trans  &trans  &trans  &trans                                                   &trans  &mt_vim_q F4 MACRO_PLACEHOLDER  &mt_vim_w F5 MACRO_PLACEHOLDER  &mt_caps_word F6 MACRO_PLACEHOLDER  &trans        &kp PSCRN
-               &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans                   &mt_tmux F1 X            &mt_tmux F2 KP_MINUS                       &mt_tmux F3 V  &trans         &kp SLCK
+             &kp CAPS  &trans  &trans  &trans  &trans  &trans                                                   &trans  &mt_vim_q F4 MACRO_PLACEHOLDER  &mt_vim_w F5 MACRO_PLACEHOLDER  &mt_caps_word F6 MACRO_PLACEHOLDER  &trans         &kp SLCK
+               &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans                   &mt_tmux F1 X            &mt_tmux F2 KP_MINUS                       &mt_tmux F3 V  &trans        &kp PSCRN
  &magic LAYER_Magic 0  &trans  &trans  &trans  &trans          &trans  &trans  &tog 4  &trans  &trans  &trans                                   &trans                          &trans                              &trans  &trans  &kp PAUSE_BREAK
             >;
         };
 
         layer_Cursor {
             bindings = <
-               &trans    &trans    &trans      &trans     &trans                                                                       &trans     &trans     &trans     &trans    &trans
-               &trans    &trans    &trans  &vim_chwin     &trans     &trans                                                  &trans    &trans     &trans     &trans     &trans    &trans
-               &trans    &trans  &alt_tab     &vim_bp    &vim_bn    &kp TAB                                                  &trans     &kp H      &kp J      &kp K      &kp L    &trans
-               &trans  &kp LGUI  &kp LALT   &kp LCTRL  &kp LSHFT  &kp SPACE                                                  &trans  &kp LEFT   &kp DOWN     &kp UP  &kp RIGHT    &trans
-               &trans    &trans    &trans      &trans  &kp LC(A)    &kp RET  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP    &kp END  &kp SLCK
- &magic LAYER_Magic 0    &trans    &trans      &trans     &trans             &trans  &trans  &tog 5  &trans  &trans  &trans            &trans     &trans     &trans     &trans    &trans
+               &trans    &trans    &trans      &trans     &trans                                                                       &trans     &trans     &trans     &trans  &trans
+               &trans    &trans    &trans  &vim_chwin     &trans     &trans                                                  &trans    &trans     &trans     &trans     &trans  &trans
+               &trans    &trans  &alt_tab     &vim_bp    &vim_bn    &kp TAB                                                  &trans     &kp H      &kp J      &kp K      &kp L  &trans
+               &trans  &kp LGUI  &kp LALT   &kp LCTRL  &kp LSHFT  &kp SPACE                                                  &trans  &kp LEFT   &kp DOWN     &kp UP  &kp RIGHT  &trans
+               &trans    &trans    &trans      &trans  &kp LC(A)    &kp RET  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP    &kp END  &trans
+ &magic LAYER_Magic 0    &trans    &trans      &trans     &trans             &trans  &trans  &tog 5  &trans  &trans  &trans            &trans     &trans     &trans     &trans  &trans
             >;
         };
 
