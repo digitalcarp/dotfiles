@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2020 The ZMK Contributors
  * Copyright (c) 2023 Innaworks Development Limited, trading as MoErgo
@@ -585,12 +586,12 @@ combos {
 
         layer_Base {
             bindings = <
-        &kp LG(LS(S))        &trans        &trans         &trans          &trans                                                                                                                                  &kp F1         &kp F11         &kp F12    &kp LC(N1)  &kp LC(N2)
-               &trans        &trans        &trans         &kp N1          &trans  &trans                                                                                      &trans                              &trans          &kp N0          &trans        &trans      &trans
-               &trans         &kp J         &AK_G          &AK_M           &AK_P   &kp V                                                                              &as COLON SEMI                        &as AMPS DOT  &as STAR EQUAL  &as QMARK EXCL   &as DQT SQT      &trans
-                &kp Z  &hm_l LGUI R  &hm_l LALT S  &hm_l LCTRL N  &hm_l LSHIFT D   &AK_B                                                                              &as FSLH COMMA  &hm_r_aka RSHIFT MACRO_PLACEHOLDER   &hm_r RCTRL E    &hm_r LALT I  &hm_r LGUI H       &kp Q
-            &kp LC(A)         &kp X         &kp F          &kp L           &AK_C   &kp W  &lt 4 ESC          &kp DEL  &trans  &trans  &kp LSHFT  &td_sk_ls_enter  &as KP_MINUS UNDER                               &AK_U           &kp O           &kp Y         &kp K   &kp PG_UP
- &magic LAYER_Magic 0      &kp LEFT        &kp UP       &kp DOWN       &kp RIGHT            &lt 5 T  &td_lt_num_bksp  &lower  &lower  &lt 6 TAB   &td_lt_sym_spc                                                &kp LEFT        &kp DOWN          &kp UP     &kp RIGHT   &kp PG_DN
+        &kp LG(LS(S))        &trans        &trans         &trans          &trans                                                                                                                              &kp F1         &kp F11         &kp F12    &kp LC(N1)  &kp LC(N2)
+               &trans        &trans        &trans         &kp N1          &trans  &trans                                                                                  &trans                              &trans          &kp N0          &trans        &trans      &trans
+               &trans         &kp J         &AK_G          &AK_M           &AK_P   &kp V                                                                          &as COLON SEMI                        &as AMPS DOT  &as STAR EQUAL  &as QMARK EXCL   &as DQT SQT      &trans
+                &kp Z  &hm_l LGUI R  &hm_l LALT S  &hm_l LCTRL N  &hm_l LSHIFT D   &AK_B                                                                          &as FSLH COMMA  &hm_r_aka RSHIFT MACRO_PLACEHOLDER   &hm_r RCTRL E    &hm_r LALT I  &hm_r LGUI H       &kp Q
+            &kp LC(A)         &kp X         &kp F          &kp L           &AK_C   &kp W  &lt 4 ESC     &kp DEL  &kp BSPC  &kp SPACE  &kp LSHFT      &kp RET  &as KP_MINUS UNDER                               &AK_U           &kp O           &kp Y         &kp K   &kp PG_UP
+ &magic LAYER_Magic 0      &kp LEFT        &kp UP       &kp DOWN       &kp RIGHT            &lt 5 T  &lt 3 BSPC    &lower     &lower  &lt 6 TAB  &lt 2 SPACE                                                &kp LEFT        &kp DOWN          &kp UP     &kp RIGHT   &kp PG_DN
             >;
         };
 
