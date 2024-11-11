@@ -27,7 +27,8 @@ If the environment does not allow sudo for installing programs, consider [Linuxb
 
 #### Optional Utilities
 
-* [bat](https://github.com/sharkdp/bat) - pretty cat (if not used modify fzf opts in `.bashrc`
+* [bat](https://github.com/sharkdp/bat) - pretty cat (if not used modify fzf opts in `.bashrc`)
+* [delta](https://github.com/dandavison/delta) - syntax highlighting pager
 * [just](https://github.com/casey/just) - command runner
 
 ### Fonts
