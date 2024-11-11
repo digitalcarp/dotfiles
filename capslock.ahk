@@ -5,25 +5,24 @@
 Remaps Capslock to 3 functions:
 
 Single press : Send Esc
-Long single press : Toggle capslock state
+Double tap : Toggle capslock state
 Hold + key : Send Ctrl + key
 */
 
-holdTime := 200
 ih := InputHook("B L1 T1", "{Esc}")
 
 *Capslock::
 {
-    ih.Start()
-    reason := ih.Wait()
-    if (reason = "Stopped") {
-        if (A_TimeSincePriorHotkey > holdTime) {
-            SetCapsLockState !GetKeyState("CapsLock", "T")
-        } else {
+    if (A_TimeSincePriorHotkey && A_TimeSincePriorHotkey < 150) {
+        SetCapsLockState !GetKeyState("CapsLock", "T")
+    } else {
+        ih.Start()
+        reason := ih.Wait()
+        if (reason = "Stopped") {
             Send "{Esc}"
+        } else if (reason = "Max") {
+            Send "{Blind}{Ctrl down}" ih.Input
         }
-    } else if (reason = "Max") {
-        Send "{Blind}{Ctrl down}" ih.Input
     }
 }
 
