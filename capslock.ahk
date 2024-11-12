@@ -2,27 +2,21 @@
 #SingleInstance Force
 
 /*
-Remaps Capslock to 3 functions:
-
-Single press : Send Esc
-Double tap : Toggle capslock state
-Hold + key : Send Ctrl + key
+Remaps Capslock to 2 functions:
+Single press => Send Esc
+Hold + key => Send Ctrl + key
 */
 
 ih := InputHook("B L1 T1", "{Esc}")
 
 *Capslock::
 {
-    if (A_TimeSincePriorHotkey && A_TimeSincePriorHotkey < 150) {
-        SetCapsLockState !GetKeyState("CapsLock", "T")
-    } else {
-        ih.Start()
-        reason := ih.Wait()
-        if (reason = "Stopped") {
-            Send "{Esc}"
-        } else if (reason = "Max") {
-            Send "{Blind}{Ctrl down}" ih.Input
-        }
+    ih.Start()
+    reason := ih.Wait()
+    if (reason = "Stopped") {
+        Send "{Esc}"
+    } else if (reason = "Max") {
+        Send "{Blind}{Ctrl down}" ih.Input
     }
 }
 
@@ -33,4 +27,11 @@ ih := InputHook("B L1 T1", "{Esc}")
     } else {
         Send "{Ctrl up}"
     }
+}
+
+; Press both shift keys to toggle caps lock
+<+RShift::
+>+LShift::
+{
+    SetCapsLockState !GetKeyState("CapsLock", "T")
 }
