@@ -75,28 +75,6 @@ Map("n", "<leader>l", "<cmd>bnext<CR>")
 set.splitbelow = true
 set.splitright = true
 
--- Reopen files at last location
-vim.api.nvim_create_autocmd(
-  {'BufReadPost'},
-  {
-    pattern = {'*'},
-    callback = function()
-      local ft = vim.opt_local.filetype:get()
-      -- Ignore git messages
-      if (ft:match('commit') or ft:match('rebase')) then
-        return
-      end
-      -- Go to position of last saved edit
-      local markpos = vim.api.nvim_buf_get_mark(0,'"')
-      local line = markpos[1]
-      local col = markpos[2]
-      if (line > 1) and (line <= vim.api.nvim_buf_line_count(0)) then
-        vim.api.nvim_win_set_cursor(0,{line,col})
-      end
-    end
-  }
-)
-
 ------------
 -- Remaps --
 ------------
@@ -157,3 +135,37 @@ vim.api.nvim_set_hl(0, "@type.qualifier.cpp", { link = "GruvboxRed" })
 vim.api.nvim_set_hl(0, "@variable.member.cpp", { link = "GruvboxFg1" })
 vim.api.nvim_set_hl(0, "@variable.parameter.cpp", { link = "GruvboxFg1" })
 vim.api.nvim_set_hl(0, "@variable.builtin.cpp", { link = "GruvboxRed" })
+
+-------------
+-- AutoCmd --
+-------------
+
+-- Reopen files at last location
+vim.api.nvim_create_autocmd(
+  {'BufReadPost'},
+  {
+    pattern = {'*'},
+    callback = function()
+      local ft = vim.opt_local.filetype:get()
+      -- Ignore git messages
+      if (ft:match('commit') or ft:match('rebase')) then
+        return
+      end
+      -- Go to position of last saved edit
+      local markpos = vim.api.nvim_buf_get_mark(0,'"')
+      local line = markpos[1]
+      local col = markpos[2]
+      if (line > 1) and (line <= vim.api.nvim_buf_line_count(0)) then
+        vim.api.nvim_win_set_cursor(0,{line,col})
+      end
+    end
+  }
+)
+
+-- Disable previous mapping for <CR> in quickfix list
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = "quickfix",
+	callback = function (opts)
+    vim.keymap.set("n", "<CR>", "<CR>", { buffer=true, noremap=true })
+	end
+})
