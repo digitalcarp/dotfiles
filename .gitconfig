@@ -2,7 +2,8 @@
     name = Daniel Gao
     email = daniel.gao.work@gmail.com
 [core]
-    pager = less -FRSX
+    # pager = less -FRSX
+    pager = delta
     editor = nvim
 
     whitespace = trailing-space,space-before-tab
@@ -23,10 +24,14 @@
     algorithm = histogram
 [interactive]
     singleKey = true
+    diffFilter = delta --color-only
+[delta]
+    # Use n and N to move detween diff sections
+    navigate = true
+    dark = true
 [merge]
-    conflictStyle = diff3
-    # git version >=2.35
-    # conflictStyle = zdiff3
+    # conflictStyle = diff3
+    conflictStyle = zdiff3
 [rebase]
     autosquash = true
 [rerere]
