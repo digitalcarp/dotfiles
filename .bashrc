@@ -6,7 +6,7 @@ PS1="\n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;108m\][\w]\[$(tput sgr0)\]\n\
 
 # Prevent accidental overwrites when using IO redirection
 # Example: touch file.txt && echo "Hello World!" >| file.txt
-set -o noclobber
+# set -o noclobber
 
 # History
 shopt -s histappend
@@ -26,6 +26,11 @@ export PAGER=less
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 [ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
+
+# Set up fzf key bindings and fuzzy completion
+if command -v fzf 2>&1 >/dev/null; then
+    eval "$(fzf --bash)"
+fi
 
 FD_PREFIX="fd --hidden --follow"
 export FZF_DEFAULT_COMMAND="$FD_PREFIX --type f"
