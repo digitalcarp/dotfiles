@@ -34,6 +34,12 @@ EDITOR=nvim visudo /etc/sudoers
 ### Utilities
 
 ```bash
+pacman -Syu openssh
+ssh-keygen -t ed25519 -C <email>
+systemctl enable --now sshd.service
+ssh-add ~/.ssh/id_ed25519
+# Add SSH key to GitHub
+cat ~/.ssh/id_ed25519.pub
 pacman -Syu htop tmux fzf ripgrep fd git just bat git-delta
 ```
 
