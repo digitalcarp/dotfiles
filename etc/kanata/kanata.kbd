@@ -1,0 +1,29 @@
+#|
+This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
+if held, it will act as Left Ctrl.
+
+The config is a simplified version of cfg_samples/minimal.kbd
+|#
+
+(defcfg
+  #|
+  This configuration will process all keys pressed inside of kanata, even if
+  they are not mapped in defsrc. This is so that certain actions can activate
+  at the right time for certain input sequences.
+  |#
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+  lsft rsft
+)
+
+(deflayer default
+  @cap
+  _    _
+)
+
+(defalias
+  cap (tap-hold-press 200 200 caps lctl)
+)

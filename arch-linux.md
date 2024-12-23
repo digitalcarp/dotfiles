@@ -31,6 +31,35 @@ usermod -aG sudo <username>
 EDITOR=nvim visudo /etc/sudoers
 ```
 
+### Utilities
+
+```bash
+pacman -Syu htop tmux fzf ripgrep fd git just bat git-delta
+```
+
+#### AUR Helper
+
+```bash
+pacman -Syu base-devel
+mkdir ~/aur
+cd !$
+# Check with https://aur.archlinux.org/packages/yay
+git clone https://aur.archlinux.org/yay.git
+cd yay
+less PKGBUILD
+makepkg --syncdeps --install --clean
+```
+
+#### Non-`pacman`/`yay` Executables
+
+For non-`pacman`/`yay` installs, use a whitelisted directory of executables for
+improved safety (i.e. accidentally overriding some command).
+
+```bash
+mkdir -p ~/tools/bin
+echo "export PATH=$PATH:$HOME/tools/bin" >> ~/.bashrc
+```
+
 ### Graphics Driver
 
 ```bash
@@ -66,12 +95,6 @@ systemctl enable --now power-profiles-daemon.service
 pacman -Syu dolphin konsole firefox
 ```
 
-### Utilities
-
-```bash
-pacman -Syu htop tmux fzf ripgrep fd git just bat git-delta
-```
-
 ### Development
 
 #### C/C++
@@ -85,4 +108,23 @@ pacman -Syu gcc clang
 ```bash
 pacman -Syu rustup
 rustup toolchain stable
+```
+
+### Key Mappings
+
+```bash
+yay -Syu kanata
+
+# Create user/group for kanata to read uinput
+groupadd uinput
+echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' > /etc/udev/rules.d/99-kanata.rules
+useradd --no-create-home --groups input,uinput --shell /bin/false --user-group kanata
+
+mkdir /etc/kanata
+# Use the version provided by dotfile repo
+cp <config>.kbd /etc/kanata/kanata.kbd
+
+# See dotfiles/etc/systemd/system/kanata.service
+cp kanata.service /etc/systemd/system/kanata.service
+systemctl enable --now kanata.service
 ```
