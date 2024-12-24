@@ -111,7 +111,7 @@ pacman -Syu dolphin konsole firefox
 #### C/C++
 
 ```bash
-pacman -Syu gcc clang
+pacman -Syu gcc clang cmake ninja
 ```
 
 #### Rust

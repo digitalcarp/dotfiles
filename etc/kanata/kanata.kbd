@@ -1,8 +1,8 @@
 #|
-This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
-if held, it will act as Left Ctrl.
+This minimal config changes Caps Lock to act as Esc on quick tap, but it will
+act as Left Ctrl if held.
 
-The config is a simplified version of cfg_samples/minimal.kbd
+The config is a simplified/modified version of cfg_samples/minimal.kbd
 |#
 
 (defcfg
@@ -25,5 +25,5 @@ The config is a simplified version of cfg_samples/minimal.kbd
 )
 
 (defalias
-  cap (tap-hold-press 200 200 caps lctl)
+  cap (tap-hold-press 200 200 esc lctl)
 )
