@@ -15,6 +15,11 @@ pacman -Syu intel-ucode neovim networkmanager man texinfo sudo
 ### Internet Connectivity
 
 ```bash
+# Initialize /etc/hosts
+cp etc/hosts /etc/hosts
+
+# Enable NetworkManager and connect to WiFi
+systemctl disable systemd-networkd.service
 systemctl enable --now NetworkManager.service
 nmcli device wifi list
 nmcli device wifi connect <SSID> --ask
