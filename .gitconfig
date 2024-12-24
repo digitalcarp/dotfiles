@@ -25,10 +25,12 @@
 [interactive]
     singleKey = true
     diffFilter = delta --color-only
+[include]
+    path = ~/.config/delta/trimmed_themes.gitconfig
 [delta]
+    features = gruvmax-fang
     # Use n and N to move detween diff sections
     navigate = true
-    dark = true
 [merge]
     # conflictStyle = diff3
     conflictStyle = zdiff3

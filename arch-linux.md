@@ -45,7 +45,9 @@ systemctl enable --now sshd.service
 ssh-add ~/.ssh/id_ed25519
 # Add SSH key to GitHub
 cat ~/.ssh/id_ed25519.pub
+
 pacman -Syu htop tmux fzf ripgrep fd git just bat git-delta
+pacman -Syu unzip
 ```
 
 #### AUR Helper
@@ -105,6 +107,17 @@ systemctl enable --now power-profiles-daemon.service
 ```bash
 pacman -Syu dolphin konsole firefox
 ```
+
+#### Font
+
+Install DejaVuSansM Nerd Font from [here](https://www.nerdfonts.com/font-downloads).
+
+```bash
+mkdir /usr/local/share/fonts
+cp *.ttf /usr/local/share/fonts
+```
+
+Set fonts using system settings and konsole.
 
 ### Development
 
