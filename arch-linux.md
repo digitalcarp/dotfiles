@@ -46,8 +46,8 @@ ssh-add ~/.ssh/id_ed25519
 # Add SSH key to GitHub
 cat ~/.ssh/id_ed25519.pub
 
-pacman -Syu htop tmux fzf ripgrep fd git just bat git-delta
-pacman -Syu unzip
+pacman -Syu tmux fzf ripgrep fd git just bat git-delta
+pacman -Syu htop unzip
 ```
 
 #### AUR Helper
@@ -105,10 +105,16 @@ systemctl enable --now power-profiles-daemon.service
 #### GUI Apps
 
 ```bash
-pacman -Syu dolphin konsole firefox
+pacman -Syu dolphin konsole firefox vlc okular spectacle
 ```
 
 #### Font
+
+```bash
+pacman -Syu ttf-dejavu-nerd ttf-roboto noto-fonts noto-fonts-cjk adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts
+```
+
+##### Manual Install
 
 Install DejaVuSansM Nerd Font from [here](https://www.nerdfonts.com/font-downloads).
 
@@ -125,6 +131,12 @@ Set fonts using system settings and konsole.
 
 ```bash
 pacman -Syu gcc clang cmake ninja
+```
+
+#### Python
+
+```bash
+pacman -Syu python uv
 ```
 
 #### Rust
