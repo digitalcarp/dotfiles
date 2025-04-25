@@ -20,6 +20,7 @@
     excludesFile = ~/.gitignore
 [commit]
     verbose = true
+    gpgsign = true
 [diff]
     algorithm = histogram
 [interactive]
