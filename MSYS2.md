@@ -5,7 +5,7 @@ Prefer the UCRT64 environment.
 ## UCRT64
 
 ```bash
-pacman -Syu git tmux mingw-w64-ucrt-x86_64-neovim mingw-w64-ucrt-x86_64-gcc 
+pacman -Syu git tmux tree mingw-w64-ucrt-x86_64-neovim mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-ttf-dejavu-nerd
 ```
 
 ### CLI Utilties

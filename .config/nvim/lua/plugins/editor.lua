@@ -24,12 +24,15 @@ return {
   {
     "numToStr/Comment.nvim",
     lazy = false,
-    init = function()
-      require("Comment").setup()
-    end,
     opts = {
       mappings = { extra = false }
     }
+  },
+
+  -- Surround
+  {
+    "tpope/vim-surround",
+    lazy = false
   },
 
   -- Undo Enhancement
@@ -37,7 +40,7 @@ return {
     "mbbill/undotree",
     event = "VeryLazy",
     keys = {
-      { "<F5>", "<cmd>UndotreeToggle<CR>", desc = "Undo Tree" },
+      { "<F5>", "<cmd>UndotreeToggle<CR>", desc = "Undo Tree" }
     }
   }
 }

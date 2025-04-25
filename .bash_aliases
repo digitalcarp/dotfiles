@@ -26,8 +26,6 @@ alias lsa="ls -lah"
 alias l="ls -lah"
 alias la="ls -lAh"
 
-alias fd="fdfind"
-
 # tmux
 alias tmux="tmux -2 -u"
 alias ts="tmux new-session -s"
