@@ -56,3 +56,11 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
     $FD_PREFIX --type d . "$1"
 }
+
+# Set up uv and uvx auto-completion
+if command -v uv 2>&1 >/dev/null; then
+    eval "$(uv generate-shell-completion bash)"
+fi
+if command -v uvx 2>&1 >/dev/null; then
+    eval "$(uvx --generate-shell-completion bash)"
+fi
