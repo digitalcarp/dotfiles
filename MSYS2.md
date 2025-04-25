@@ -5,7 +5,7 @@ Prefer the UCRT64 environment.
 ## UCRT64
 
 ```bash
-pacman -Syu git tmux make ninja cmake gdb mingw-w64-ucrt-x86_64-neovim
+pacman -Syu git tmux mingw-w64-ucrt-x86_64-neovim mingw-w64-ucrt-x86_64-gcc 
 ```
 
 ### CLI Utilties
@@ -14,10 +14,16 @@ pacman -Syu git tmux make ninja cmake gdb mingw-w64-ucrt-x86_64-neovim
 pacman -Syu mingw-w64-ucrt-x86_64-fzf mingw-w64-ucrt-x86_64-ripgrep mingw-w64-ucrt-x86_64-fd mingw-w64-ucrt-x86_64-just
 ```
 
+### C/C++
+
+```bash
+pacman -Syu mingw-w64-ucrt-x86_64-clang mingw-w64-ucrt-x86_64-make mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-gdb mingw-w64-ucrt-x86_64-cppcheck
+```
+
 ### Python
 
 ```bash
-mingw-w64-ucrt-x86_64-python-uv
+pacman -Syu mingw-w64-ucrt-x86_64-python-uv
 ```
 
 ### RawTherapee
