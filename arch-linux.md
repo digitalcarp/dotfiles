@@ -105,7 +105,7 @@ systemctl enable --now power-profiles-daemon.service
 #### GUI Apps
 
 ```bash
-pacman -Syu dolphin konsole firefox vlc okular spectacle
+pacman -Syu dolphin konsole firefox vlc okular spectacle gwenview
 ```
 
 #### Font
@@ -130,7 +130,7 @@ Set fonts using system settings and konsole.
 #### C/C++
 
 ```bash
-pacman -Syu gcc clang cmake ninja
+pacman -Syu gcc clang cmake ninja gdb
 ```
 
 #### Python
