@@ -18,6 +18,8 @@
 
     # Define global .gitignore
     excludesFile = ~/.gitignore
+[init]
+    defaultBranch = main
 [commit]
     verbose = true
     gpgsign = true
