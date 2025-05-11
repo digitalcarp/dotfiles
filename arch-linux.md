@@ -164,3 +164,19 @@ cp <config>.kbd /etc/kanata/kanata.kbd
 cp kanata.service /etc/systemd/system/kanata.service
 systemctl enable --now kanata.service
 ```
+
+## GRUB
+
+If dual-booting, pick one of the following GRUB themes and follow the instructions to install the theme.
+
+* [krypciak/crossgrub](https://github.com/krypciak/crossgrub)
+
+Modify the following lines in `/etc/default/grub`:
+
+```
+GRUB_DEFAULT="saved"
+GRUB_THEME="/boot/grub/themes/crossgrub/theme.txt"
+GRUB_SAVED_DEFAULT="true"
+```
+
+Apply changes by running `sudo grub-mkconfig -o /boot/grub/grub.cfg`.
