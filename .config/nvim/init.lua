@@ -79,6 +79,10 @@ set.splitright = true
 -- Remaps --
 ------------
 
+-- Insert mode with always blank new line
+Map("n", "<leader>o", "o<Esc>cc")
+Map("n", "<leader>O", "O<Esc>cc")
+
 -- Move selection by one line
 Map("x", "J", ":m '>+1<CR>gv=gv")
 Map("x", "K", ":m -2<CR>gv=gv")
