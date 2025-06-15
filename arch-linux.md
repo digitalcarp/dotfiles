@@ -46,8 +46,8 @@ ssh-add ~/.ssh/id_ed25519
 # Add SSH key to GitHub
 cat ~/.ssh/id_ed25519.pub
 
-pacman -Syu tmux fzf ripgrep fd git just bat git-delta
-pacman -Syu htop unzip
+pacman -Syu tmux fzf ripgrep fd git just bat git-delta \
+  htop unzip ffmpeg imagemagick gettext tree
 ```
 
 #### AUR Helper
