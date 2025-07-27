@@ -12,6 +12,17 @@ pacman -Syu intel-ucode neovim networkmanager man texinfo sudo
 
 ## Post-Install Setup
 
+### Create User Accounts
+
+```bash
+useradd -m <username>
+passwd <username>
+# Alternatively, use the wheel group
+usermod -aG sudo <username>
+# Update the sudoers file to enable the sudo/wheel group
+EDITOR=nvim visudo /etc/sudoers
+```
+
 ### Internet Connectivity
 
 ```bash
@@ -25,17 +36,6 @@ nmcli device wifi list
 nmcli device wifi connect <SSID> --ask
 ```
 
-### Create User Accounts
-
-```bash
-useradd -m <username>
-passwd <username>
-# Alternatively, use the wheel group
-usermod -aG sudo <username>
-# Update the sudoers file to enable the sudo/wheel group
-EDITOR=nvim visudo /etc/sudoers
-```
-
 ### Utilities
 
 ```bash
@@ -45,8 +45,18 @@ systemctl enable --now sshd.service
 ssh-add ~/.ssh/id_ed25519
 # Add SSH key to GitHub
 cat ~/.ssh/id_ed25519.pub
+```
 
-pacman -Syu tmux fzf ripgrep fd git just bat git-delta \
+```bash
+# Install nftables and uninstall iptables
+pacman -Syu iptables-nft
+cp /etc/nftables.conf /etc/nftables.conf.bak
+cp etc/nftables.conf /etc/nftables.conf
+systemctl enable --now nftables.service
+```
+
+```bash
+pacman -Syu tmux fzf ripgrep fd git just bat git-delta glow \
   htop unzip ffmpeg imagemagick gettext tree
 ```
 

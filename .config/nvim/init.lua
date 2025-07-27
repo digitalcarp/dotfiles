@@ -25,7 +25,7 @@ set.incsearch = true
 
 set.swapfile = false
 set.backup = false
-set.undodir = vim.fn.expand("$HOME/undodir")
+set.undodir = vim.fn.expand("$HOME/.undodir")
 set.undofile = true
 
 --------
