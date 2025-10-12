@@ -161,8 +161,8 @@ rustup toolchain stable
 ```bash
 yay -Syu kanata
 
-# Create user/group for kanata to read uinput
-groupadd uinput
+# Create user/group for kanata to read uinput (must be system group)
+groupadd -r uinput
 echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' > /etc/udev/rules.d/99-kanata.rules
 useradd --no-create-home --groups input,uinput --shell /bin/false --user-group kanata
 

@@ -7,19 +7,20 @@ After=modprobe@uinput.service
 [Service]
 Type=simple
 User=kanata
+SupplementaryGroups=uinput
 # CRITICAL: Update executable and config file paths
 ExecStart=/usr/bin/kanata --quiet --cfg /etc/kanata/kanata.kbd
 Restart=no
 # Security
 CapabilityBoundingSet=
-DeviceAllow=/dev/uinput rw
-DeviceAllow=char-input
-DeviceAllow=/dev/stdin
 DevicePolicy=strict
 PrivateDevices=true
+DeviceAllow=/dev/uinput rw
+DeviceAllow=/dev/stdin
+DeviceAllow=char-input
 BindPaths=/dev/uinput
+BindReadOnlyPaths=/dev/input
 BindReadOnlyPaths=/dev/stdin
-BindReadOnlyPaths=/dev/input/
 InaccessiblePaths=/dev/shm
 LockPersonality=true
 NoNewPrivileges=true
@@ -46,7 +47,6 @@ SystemCallFilter=@system-service
 SystemCallFilter=~@privileged
 SystemCallFilter=~@resources
 RemoveIPC=true
-IPAddressDeny=any
 RestrictSUIDSGID=true
 RestrictRealtime=true
 MemoryDenyWriteExecute=true
