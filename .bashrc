@@ -21,7 +21,7 @@ shopt -s direxpand
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export PAGER="less -R"
+export PAGER="less -FRX"
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
