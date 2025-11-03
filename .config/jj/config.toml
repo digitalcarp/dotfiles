@@ -4,8 +4,29 @@
 name = "Daniel Gao"
 email = "daniel.gao.work@gmail.com"
 
+[ui]
+default-command = "log"
+diff-editor = ":builtin"
+merge-editor = ":builtin"
+
 [revset-aliases]
-'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+"closest_bookmark(to)" = "heads(::to & bookmarks())"
 
 [aliases]
+bc = ["bookmark", "create"]
+br = ["log", "-r", "heads(all())"]
+
+d = ["describe"]
+
+e = ["edit"]
+en = ["next", "--edit"]
+
+l = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
+
+n = ["new"]
+nb = ["new", "-B", "@"]
+
+s = ["squash"]
+si = ["squash", "-i"]
+
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
