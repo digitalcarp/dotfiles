@@ -1,0 +1,57 @@
+# To use these themes, first include this file in your own gitconfig file:
+#
+# [include]
+#     path = ~/.config/delta/trimmed_themes.gitconfig
+# [delta]
+#    features = gruvbox-custom
+
+# Inspired by gruvmax-fang from author [maxfangx](https://github.com/maxfangx)
+[delta "gruvbox-custom"]
+    # author: https://github.com/maxfangx
+    # General appearance
+    dark = true
+    syntax-theme = gruvbox-dark
+    # File
+    file-style = "#ebdbb2" bold
+    file-added-label = [+]
+    file-copied-label = [==]
+    file-modified-label = [*]
+    file-removed-label = [-]
+    file-renamed-label = [->]
+    file-decoration-style = "#928374" ul
+    # No hunk headers
+    hunk-header-style = omit
+    # Line numbers
+    line-numbers = true
+    line-numbers-left-style = "#928374"
+    line-numbers-right-style = "#928374"
+    line-numbers-minus-style = "#a02a11"
+    line-numbers-plus-style = "#479b36"
+    line-numbers-zero-style = "#928374"
+    line-numbers-left-format = "{nm:>4}│"
+    line-numbers-right-format = "{np:>4}│"
+    # Diff contents
+    inline-hint-style = syntax
+    minus-style = syntax "#330002"
+    minus-emph-style = syntax "#66000e"
+    minus-non-emph-style = syntax "#330002"
+    plus-style = syntax "#141f14"
+    plus-emph-style = syntax "#283e28"
+    plus-non-emph-style = syntax "#141f14"
+    whitespace-error-style = "#fb4934" reverse
+    # Commit hash
+    commit-decoration-style = normal box
+    commit-style = "#ebdbb2" bold
+    # Blame
+    blame-code-style = syntax
+    blame-format = "{author:>18} ({commit:>8}) {timestamp:<13}"
+    blame-separator-format = "│{n:>4}│"
+    blame-separator-style = "#928374"
+    blame-palette = "#1d2021" "#32302f"
+    # Merge conflicts
+    merge-conflict-begin-symbol = ⌃
+    merge-conflict-end-symbol = ⌄
+    merge-conflict-ours-diff-header-style = "#689d6a" bold
+    merge-conflict-theirs-diff-header-style = "#458588" bold overline
+    merge-conflict-ours-diff-header-decoration-style = ''
+    merge-conflict-theirs-diff-header-decoration-style = ''

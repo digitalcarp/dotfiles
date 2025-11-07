@@ -25,9 +25,10 @@
 [interactive]
     singleKey = true
     diffFilter = delta --color-only
+[include]
+    path = ~/.config/delta/custom_themes.gitconfig
 [delta]
-    pager = less -FRX
-    syntax-theme = gruvbox-dark
+    features = gruvbox-custom
     # Use n and N to move detween diff sections
     navigate = true
 [merge]

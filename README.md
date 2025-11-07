@@ -52,8 +52,3 @@ Consider one of the following DPI:
   * [Windows Terminal](https://gist.github.com/davialexandre/1179070118b22d830739efee4721972d)
 
 The terminal colorscheme requires additional work on top of copying dotfiles. I'm uncertain where I sourced `.dircolors` from. The author credit is in the file. See the `.bashrc` file for how it is loaded.
-
-For `delta` theme support, download the themes file from the repo
-[here](https://raw.githubusercontent.com/dandavison/delta/main/themes.gitconfig)
-and put somewhere. Update the `.gitconfig` to point to it. Alternatively, use
-the provided version in `.config/delta/trimmed_themes.gitconfig`.
