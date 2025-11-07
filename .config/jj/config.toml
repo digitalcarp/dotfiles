@@ -1,15 +1,65 @@
 #:schema https://jj-vcs.github.io/jj/latest/config-schema.json
 
+# References
+# - [Steve's Jujutsu Tutorial](https://steveklabnik.github.io/jujutsu-tutorial/)
+# - [thoughtpolice/jjconfig.toml](https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6)
+
 [user]
 name = "Daniel Gao"
 email = "daniel.gao.work@gmail.com"
 
 [ui]
 default-command = "log"
+
+diff-formatter = ":git"
 diff-editor = ":builtin"
 merge-editor = ":builtin"
 
+pager=["delta", "--pager", "less -FRX"]
+
+# These options allow for `jj diff` and `jj show` to clear the output from the
+# terminal after closing the pager
+[[--scope]]
+--when.commands = ["diff", "show"]
+
+[--scope.ui]
+pager = "delta"
+
+[git]
+private-commits = "blacklist()"
+
 [revset-aliases]
+# Useful on Windows. Technically conflicts with any bookmark/tag named 'at',
+# but seems OK...
+'at' = '@'
+
+"user(x)" = "author(x) | committer(x)"
+# Modify per dev environment
+# "mine()" = "user(\"placeholder@domain.com\")"
+
+# By default, show the repo trunk, the remote bookmarks, and all remote tags.
+# We don't want to change these in most cases, but in some repos it's useful.
+"immutable_heads()" = "present(trunk()) | untracked_remote_bookmarks() | tags()"
+
+# Useful to ignore this, in many repos. For repos like `jj` these are
+# consistently populated with a bunch of auto-generated commits, so ignoring it
+# is often nice.
+"gh_pages()" = "ancestors(remote_bookmarks(exact:\"gh-pages\"))"
+
+# Private and WIP commits that should never be pushed anywhere. Often part of
+# work-in-progress merge stacks.
+"wip()" = "description(glob:\"wip:*\")"
+"private()" = "description(glob:\"private:*\")"
+"blacklist()" = "wip() | private()"
+
+# stack(x, n) is the set of mutable commits reachable from "x", with "n"
+# parents. "n" is often useful to customize the display and return set for
+# certain operations. "x" can be used to target the set of "roots" to traverse,
+# e.g. @ is the current stack.
+"stack()" = "stack(@)"
+"stack(x)" = "stack(x, 2)"
+"stack(x, n)" = "ancestors(reachable(x, mutable()), n)"
+
 "closest_bookmark(to)" = "heads(::to & bookmarks())"
 
 [aliases]
@@ -29,4 +79,6 @@ nb = ["new", "-B", "@"]
 s = ["squash"]
 si = ["squash", "-i"]
 
+cat = ["file", "show"]
+credit = ["file", "annotate"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
