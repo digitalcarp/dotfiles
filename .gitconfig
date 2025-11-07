@@ -2,16 +2,13 @@
     name = Daniel Gao
     email = daniel.gao.work@gmail.com
 [core]
-    # pager = less -FRSX
     pager = delta
     editor = nvim
 
     whitespace = trailing-space,space-before-tab
 
-    # Unix line endings are preferred
-    # Override in .gitattributes with the text=<> and eol=<> if needed
-    autocrlf = input
-    safecrlf = true
+    # Don't mess with line endings, use .gitattributes instead
+    autocrlf = false
 
     # Ignore file permission changes
     filemode = false
@@ -28,14 +25,12 @@
 [interactive]
     singleKey = true
     diffFilter = delta --color-only
-[include]
-    path = ~/.config/delta/trimmed_themes.gitconfig
 [delta]
-    features = gruvmax-fang
+    pager = less -FRX
+    syntax-theme = gruvbox-dark
     # Use n and N to move detween diff sections
     navigate = true
 [merge]
-    # conflictStyle = diff3
     conflictStyle = zdiff3
 [rebase]
     autosquash = true
@@ -43,7 +38,7 @@
     enabled = true
     autoupdate = true
 [help]
-    autocorrect = prompt
+    autocorrect = never
 
 [alias]
     aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
