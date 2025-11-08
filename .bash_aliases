@@ -5,6 +5,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 cl () {
     cd "$1" && ls
@@ -25,6 +26,12 @@ alias ll="ls -lh"
 alias lsa="ls -lah"
 alias l="ls -lah"
 alias la="ls -lAh"
+
+# bat
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
 
 # tmux
 alias tmux="tmux -2 -u"

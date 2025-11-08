@@ -10,7 +10,9 @@
     # author: https://github.com/maxfangx
     # General appearance
     dark = true
-    syntax-theme = gruvbox-dark
+    # syntax-theme = gruvbox-dark
+    syntax-theme = gruvbox-dark-medium
+
     # File
     file-style = "#ebdbb2" bold
     file-added-label = [+]

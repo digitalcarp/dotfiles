@@ -1,4 +1,10 @@
---theme="gruvbox-dark"
+# vim: ft=config
+
+# To add a custom theme, copy `theme.tmTheme` to
+# `~/.config/bat/themes/theme.tmTheme`, then run `bat cache --build`
+--theme "gruvbox-dark-medium"
+# Built-in gruvbox-dark has incorrect colors
+# --theme "gruvbox-dark"
 
 --map-syntax ".fdignore:Git Ignore"
 --map-syntax ".ignore:Git Ignore"
