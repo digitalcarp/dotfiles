@@ -31,6 +31,7 @@ set.undofile = true
 --------
 -- UI --
 --------
+set.background = "dark"
 set.termguicolors = true
 
 set.ruler = true
@@ -123,22 +124,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 set.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup({
+  spec = {
+    { import = "plugins" }
+  },
+  dev = {
+    path = "~/.config/nvim/"
+  }
+})
 
-vim.api.nvim_set_hl(0, "@constructor.cpp", { link = "GruvboxGreen" })
-vim.api.nvim_set_hl(0, "@function.cpp", { link = "GruvboxGreen" })
-vim.api.nvim_set_hl(0, "@function.call.cpp", { link = "GruvboxGreen" })
-vim.api.nvim_set_hl(0, "@function.method.call.cpp", { link = "GruvboxGreen" })
-vim.api.nvim_set_hl(0, "@function.method.cpp", { link = "GruvboxGreen" })
-vim.api.nvim_set_hl(0, "@module.cpp", { link = "GruvboxBlue" })
-vim.api.nvim_set_hl(0, "@property.cpp", { link = "GruvboxFg1" })
-vim.api.nvim_set_hl(0, "@string.cpp", { link = "GruvboxPurple" })
-vim.api.nvim_set_hl(0, "@type.cpp", { link = "GruvboxBlue" })
-vim.api.nvim_set_hl(0, "@type.definition.cpp", { link = "GruvboxBlue" })
-vim.api.nvim_set_hl(0, "@type.qualifier.cpp", { link = "GruvboxRed" })
-vim.api.nvim_set_hl(0, "@variable.member.cpp", { link = "GruvboxFg1" })
-vim.api.nvim_set_hl(0, "@variable.parameter.cpp", { link = "GruvboxFg1" })
-vim.api.nvim_set_hl(0, "@variable.builtin.cpp", { link = "GruvboxRed" })
+vim.cmd.colorscheme("gruvbox")
 
 -------------
 -- AutoCmd --

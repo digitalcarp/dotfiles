@@ -1,4 +1,4 @@
-<!-- vim: set ft=xml : -->
+<!-- vim: set ft=xml sw=4 ts=4 sts=4 : -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -41,6 +41,7 @@
                 <key>settings</key>
                 <dict>
                     <key>foreground</key><string>#b8bb26</string>
+                    <key>fontStyle</key><string>bold</string>
                 </dict>
             </dict>
 
@@ -54,45 +55,24 @@
                 </dict>
             </dict>
 
-            <!-- Entities: Classes, Interfaces, Namespaces, etc. -->
+            <!-- Type -->
+            <!-- Sublime Text cannot distinguish between class and int... -->
             <dict>
-                <key>name</key><string>Entities</string>
-                <key>scope</key><string>support.type, entity.name, entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.union, entity.name.namespace</string>
+                <key>name</key><string>Type</string>
+                <key>scope</key><string>entity.name, storage.type, support.class, support.type</string>
                 <key>settings</key>
                 <dict>
                     <key>foreground</key><string>#83a598</string>
                 </dict>
             </dict>
-            <dict>
-                <key>name</key><string>Interfaces</string>
-                <key>scope</key><string>entity.name.trait, entity.name.interface</string>
-                <key>settings</key>
-                <dict>
-                    <key>foreground</key><string>#83a598</string>
-                </dict>
-            </dict>
-            <dict>
-                <key>name</key><string>Implementations</string>
-                <key>scope</key><string>entity.name.impl, entity.other.inherited-class</string>
-                <key>settings</key>
-                <dict>
-                    <key>foreground</key><string>#83a598</string>
-                </dict>
-            </dict>
-            <dict>
-                <key>name</key><string>Forward Declarations</string>
-                <key>scope</key><string>entity.name.class.forward-decl</string>
-                <key>settings</key>
-                <dict>
-                    <key>foreground</key><string>#83a598</string>
-                </dict>
-            </dict>
+
+            <!-- Labels -->
             <dict>
                 <key>name</key><string>Labels</string>
                 <key>scope</key><string>entity.name.label</string>
                 <key>settings</key>
                 <dict>
-                    <key>foreground</key><string>#d3869b</string>
+                    <key>foreground</key><string>#fb4934</string>
                 </dict>
             </dict>
 
@@ -114,31 +94,13 @@
                 </dict>
             </dict>
 
-            <!-- Built-in Types -->
-            <dict>
-                <key>name</key><string>Types</string>
-                <key>scope</key><string>storage.type</string>
-                <key>settings</key>
-                <dict>
-                    <key>foreground</key><string>#fabd2f</string>
-                </dict>
-            </dict>
-            <dict>
-                <key>name</key><string>Type Modifier</string>
-                <key>scope</key><string>storage.modifier</string>
-                <key>settings</key>
-                <dict>
-                    <key>foreground</key><string>#fb4934</string>
-                </dict>
-            </dict>
-
             <!-- Support -->
             <dict>
                 <key>name</key><string>Support</string>
                 <key>scope</key><string>support</string>
                 <key>settings</key>
                 <dict>
-                    <key>foreground</key><string>#8ec07c</string>
+                    <key>foreground</key><string>#ebdbb2</string>
                 </dict>
             </dict>
 
@@ -149,6 +111,14 @@
                 <key>settings</key>
                 <dict>
                     <key>foreground</key><string>#fb4934</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>name</key><string>Type Modifier</string>
+                <key>scope</key><string>storage.modifier</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key><string>#fabd2f</string>
                 </dict>
             </dict>
             <dict>
@@ -184,7 +154,7 @@
                 <key>scope</key><string>string, constant.character</string>
                 <key>settings</key>
                 <dict>
-                    <key>foreground</key><string>#d3869b</string>
+                    <key>foreground</key><string>#b8bb26</string>
                 </dict>
             </dict>
 
@@ -203,6 +173,7 @@
                 <key>settings</key>
                 <dict>
                     <key>foreground</key><string>#d79921</string>
+                    <key>fontStyle</key><string>italic</string>
                 </dict>
             </dict>
 
@@ -230,7 +201,7 @@
                 <key>scope</key><string>markup.heading</string>
                 <key>settings</key>
                 <dict>
-                    <key>foreground</key><string>#83a598</string>
+                    <key>foreground</key><string>#b8bb26</string>
                     <key>fontStyle</key><string>bold</string>
                 </dict>
             </dict>

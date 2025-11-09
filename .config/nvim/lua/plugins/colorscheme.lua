@@ -1,11 +1,19 @@
 return {
   {
-    "ellisonleao/gruvbox.nvim",
-    priority = 1000,
-    config = function()
-      vim.o.background = "dark"
-      vim.cmd([[colorscheme gruvbox]])
-    end,
-    opts = { contrast = "hard" }
+    name = "gruvbox",
+    dir = vim.fn.stdpath("config") .. "/gruvbox",
+    dev = true,
+    priority = 9001,
+    opts = {
+      contrast = "",
+      bold = true,
+      italic = {
+        strings = false,
+        emphasis = true,
+        comments = false,
+        operators = false,
+        folds = true
+      }
+    }
   }
 }

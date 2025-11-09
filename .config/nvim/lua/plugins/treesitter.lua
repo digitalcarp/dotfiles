@@ -29,7 +29,6 @@ return {
           "markdown",
           "markdown_inline",
           "regex",
-          "tcl",
           "toml",
           "verilog",
           "xml",
