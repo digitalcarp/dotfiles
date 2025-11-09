@@ -1,0 +1,6 @@
+# MiniSnacks
+
+A stripped down version of [folke/snacks.nvim](https://github.com/folke/snacks.nvim)
+that is relevant to my usage of nvim.
+
+See `LICENSE` for the original snacks.nvim license.
