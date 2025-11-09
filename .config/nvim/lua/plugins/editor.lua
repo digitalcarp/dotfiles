@@ -30,7 +30,11 @@ return {
   },
 
   -- Enhanced textobjects
-  { "nvim-mini/mini.ai", event = "VeryLazy" },
+  {
+    "nvim-mini/mini.ai",
+    version = false,
+    opts = {}
+  },
 
   -- Classic tpope plugins
   {
@@ -50,6 +54,7 @@ return {
   -- Automatic parenthesis/brace insertion
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter"
+    event = "InsertEnter",
+    opts = {}
   }
 }

@@ -1,43 +1,71 @@
+local opts = {
+  ensure_installed = {
+    -- Always need to be installed as required by nvim-treesitter
+    "c",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "vim",
+    "vimdoc",
+    "query",
+    -- Custom required
+    "bash",
+    "cmake",
+    "comment",
+    "cpp",
+    "css",
+    "csv",
+    "diff",
+    "html",
+    "ini",
+    "javascript",
+    "json",
+    "just",
+    "make",
+    "python",
+    "regex",
+    "toml",
+    "xml",
+    "yaml",
+
+    -- Optional (uncomment as needed)
+
+    -- "latex",
+    -- "perl",
+    -- "rst",
+    -- "rust",
+    -- "sql",
+    -- "typescript",
+    -- "verilog",
+    -- "vhdl",
+    -- "tcl",
+  },
+  sync_install = false,
+  auto_install = false, -- Don't have tree-sitter CLI installed locally
+  highlight = {
+    enable = true,
+    -- Disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+      local max_filesize = 100 * 1024 -- 100 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      else
+        return false
+      end
+    end
+  },
+  indent = { enable = true }
+}
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "VeryLazy" },
-    init = function(plugin)
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
     config = function()
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-        ensure_installed = {
-          -- Always need to be installed
-          "c",
-          "lua",
-          "vim",
-          "vimdoc",
-          "query",
-          -- Optional
-          "bash",
-          "cpp",
-          "diff",
-          "ini",
-          "json",
-          "make",
-          "markdown",
-          "markdown_inline",
-          "regex",
-          "toml",
-          "verilog",
-          "xml",
-          "yaml"
-        },
-        sync_install = false,
-        auto_install = false, -- Don't have tree-sitter CLI installed locally
-        highlight = { enable = true },
-        indent = { enable = true }
-      })
+      require('nvim-treesitter.configs').setup(opts)
     end
   }
 }
