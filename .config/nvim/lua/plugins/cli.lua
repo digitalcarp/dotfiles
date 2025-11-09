@@ -55,5 +55,11 @@ return {
       { "<leader>b", "<cmd>FzfLua buffers<CR>", desc = "Find buffer", silent = true }
     },
     config = setup_fzf_lua
+  },
+  -- File system manipulation
+  {
+    'stevearc/oil.nvim',
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" }
   }
 }

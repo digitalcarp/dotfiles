@@ -3,6 +3,7 @@ return {
     name = "gruvbox",
     dir = vim.fn.stdpath("config") .. "/gruvbox",
     dev = true,
+    lazy = false,
     priority = 9001,
     opts = {
       contrast = "",

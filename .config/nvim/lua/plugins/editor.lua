@@ -23,24 +23,33 @@ return {
   -- Commenting
   {
     "numToStr/Comment.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
       mappings = { extra = false }
     }
   },
 
-  -- Surround
+  -- Enhanced textobjects
+  { "nvim-mini/mini.ai", event = "VeryLazy" },
+
+  -- Classic tpope plugins
   {
-    "tpope/vim-surround",
-    lazy = false
+    "tpope/vim-endwise",
+    event = "InsertEnter"
   },
+  { "tpope/vim-surround", event = "VeryLazy" },
 
   -- Undo Enhancement
   {
     "mbbill/undotree",
-    event = "VeryLazy",
     keys = {
       { "<F5>", "<cmd>UndotreeToggle<CR>", desc = "Undo Tree" }
     }
+  },
+
+  -- Automatic parenthesis/brace insertion
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter"
   }
 }
