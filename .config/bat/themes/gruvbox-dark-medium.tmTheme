@@ -124,7 +124,7 @@
                 <key>scope</key><string>storage.modifier</string>
                 <key>settings</key>
                 <dict>
-                    <key>foreground</key><string>#fabd2f</string>
+                    <key>foreground</key><string>#fe8019</string>
                 </dict>
             </dict>
             <dict>
