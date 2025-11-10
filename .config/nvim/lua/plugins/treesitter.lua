@@ -78,7 +78,8 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       branch = "master"
     },
-    lazy = false,
+    -- Official docs say they don't support lazy loading, but it seems to work
+    event = "VeryLazy",
     build = ":TSUpdate",
     config = function()
       require('nvim-treesitter.configs').setup(opts)

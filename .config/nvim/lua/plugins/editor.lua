@@ -29,7 +29,7 @@ return {
   -- Indentation
   { 
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufEnter",
+    lazy = false,
     opts = {
       indent = {
         char = "|",
@@ -51,7 +51,7 @@ return {
   -- Commenting
   {
     "numToStr/Comment.nvim",
-    event = {"BufRead", "BufWritePost"},
+    event = "VeryLazy",
     opts = {
       mappings = { extra = false }
     }
@@ -69,7 +69,7 @@ return {
     "tpope/vim-endwise",
     event = "InsertEnter"
   },
-  { "tpope/vim-surround", event = {"BufRead", "BufWritePost"} },
+  { "tpope/vim-surround", event = "VeryLazy" },
 
   -- Undo Enhancement
   {
