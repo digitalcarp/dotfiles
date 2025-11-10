@@ -51,7 +51,7 @@ return {
   -- Commenting
   {
     "numToStr/Comment.nvim",
-    event = "BufRead",
+    event = {"BufRead", "BufWritePost"},
     opts = {
       mappings = { extra = false }
     }
@@ -60,7 +60,7 @@ return {
   -- Enhanced textobjects
   {
     "nvim-mini/mini.ai",
-    version = false,
+    event = "VeryLazy",
     opts = {}
   },
 
@@ -69,7 +69,7 @@ return {
     "tpope/vim-endwise",
     event = "InsertEnter"
   },
-  { "tpope/vim-surround", event = "BufEnter" },
+  { "tpope/vim-surround", event = {"BufRead", "BufWritePost"} },
 
   -- Undo Enhancement
   {
