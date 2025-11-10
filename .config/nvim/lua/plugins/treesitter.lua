@@ -55,13 +55,29 @@ local opts = {
       end
     end
   },
-  indent = { enable = true }
+  indent = { enable = true },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["ac"] = "@comment.outer",
+        ["of"] = "@function.outer",
+        ["uf"] = "@function.inner",
+        ["oc"] = "@class.outer",
+        ["uc"] = "@class.inner"
+      }
+    }
+  }
 }
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      branch = "master"
+    },
     lazy = false,
     build = ":TSUpdate",
     config = function()

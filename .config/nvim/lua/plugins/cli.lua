@@ -2,7 +2,7 @@ local function setup_fzf_lua()
   local fzf_lua = require("fzf-lua")
   local actions = fzf_lua.actions
 
-  opts = {
+  local opts = {
     -- Taken from fzf-vim in fzf-lua profiles
     fzf_opts = {
       -- nullify fzf-lua's settings to inherit from FZF_DEFAULT_OPTS

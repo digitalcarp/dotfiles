@@ -1,7 +1,35 @@
+local function setup_nvim_autopairs()
+  local npairs = require("nvim-autopairs")
+
+  local Rule = require('nvim-autopairs.rule')
+  local cond = require('nvim-autopairs.conds')
+
+  local opts = {}
+
+  local rules = {
+    -- Type `{};` to start a block with trailing `;`
+    Rule("{};", "")
+      :end_wise(cond.is_end_line())
+      :replace_endpair(function(opts)
+        return "<BS><BS><BS><CR>};"
+      end),
+    -- Type `{},` to start a block with trailing `,`
+    Rule("{},", "")
+      :end_wise(cond.is_end_line())
+      :replace_endpair(function(opts)
+        return "<BS><BS><BS><CR>},"
+      end),
+  }
+
+  npairs.setup(opts)
+  npairs.add_rules(rules)
+end
+
 return {
   -- Indentation
   { 
     "lukas-reineke/indent-blankline.nvim",
+    event = "BufEnter",
     opts = {
       indent = {
         char = "|",
@@ -23,7 +51,7 @@ return {
   -- Commenting
   {
     "numToStr/Comment.nvim",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {
       mappings = { extra = false }
     }
@@ -41,7 +69,7 @@ return {
     "tpope/vim-endwise",
     event = "InsertEnter"
   },
-  { "tpope/vim-surround", event = "VeryLazy" },
+  { "tpope/vim-surround", event = "BufEnter" },
 
   -- Undo Enhancement
   {
@@ -55,6 +83,6 @@ return {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    opts = {}
+    config = setup_nvim_autopairs
   }
 }
