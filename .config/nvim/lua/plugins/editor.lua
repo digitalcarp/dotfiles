@@ -1,27 +1,38 @@
+local function noop_cr(opts)
+  return ""
+end
+
 local function setup_nvim_autopairs()
   local npairs = require("nvim-autopairs")
 
-  local Rule = require('nvim-autopairs.rule')
-  local cond = require('nvim-autopairs.conds')
+  local Rule = require("nvim-autopairs.rule")
+  local cond = require("nvim-autopairs.conds")
 
   local opts = {}
 
   local rules = {
-    -- Type `{};` to start a block with trailing `;`
-    Rule("{};", "")
-      :end_wise(cond.is_end_line())
-      :replace_endpair(function(opts)
-        return "<BS><BS><BS><CR>};"
+    -- Type `{ <CR>` to start a block
+    Rule("{ ", "")
+      :only_cr(cond.is_end_line())
+      :replace_map_cr(function (opts)
+        return "<C-g>u<BS><CR>}<C-c>O"
       end),
-    -- Type `{},` to start a block with trailing `,`
-    Rule("{},", "")
-      :end_wise(cond.is_end_line())
-      :replace_endpair(function(opts)
-        return "<BS><BS><BS><CR>},"
+    -- Type `{;<CR>` to start a block with trailing `;`
+    Rule("{;", "")
+      :only_cr(cond.is_end_line())
+      :replace_map_cr(function (opts)
+        return "<C-g>u<BS><CR>};<C-c>O"
       end),
+    -- Type `{,<CR>` to start a block with trailing `,`
+    Rule("{,", "")
+      :only_cr(cond.is_end_line())
+      :replace_map_cr(function (opts)
+        return "<C-g>u<BS><CR>},<C-c>O"
+      end)
   }
 
   npairs.setup(opts)
+  npairs.remove_rule('{')
   npairs.add_rules(rules)
 end
 
@@ -64,11 +75,7 @@ return {
     opts = {}
   },
 
-  -- Classic tpope plugins
-  {
-    "tpope/vim-endwise",
-    event = "InsertEnter"
-  },
+  -- Surround
   { "tpope/vim-surround", event = "VeryLazy" },
 
   -- Undo Enhancement
