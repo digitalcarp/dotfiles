@@ -11,6 +11,8 @@ local function setup_nvim_autopairs()
   local opts = {}
 
   local rules = {
+    -- Allow cursor move on <CR> inside pre-existing {}
+    Rule("{", "}"):only_cr(),
     -- Type `{ <CR>` to start a block
     Rule("{ ", "")
       :only_cr(cond.is_end_line())
@@ -72,11 +74,25 @@ return {
   {
     "nvim-mini/mini.ai",
     event = "VeryLazy",
-    opts = {}
+    opts = {
+      custom_textobjects = {
+        -- Use neovim's built-in mapping for {.
+        --
+        -- This essentially forces search_method=cover for { which aligns with
+        -- the more frequent use case of selecting the current scope under the
+        -- cursor. Also, long scopes outside of mini.ai's n_lines search range
+        -- won't fail.
+        ["{"] = false
+      }
+    }
   },
 
   -- Surround
-  { "tpope/vim-surround", event = "VeryLazy" },
+  {
+    "nvim-mini/mini.surround",
+    event = "VeryLazy",
+    opts = {}
+  },
 
   -- Undo Enhancement
   {

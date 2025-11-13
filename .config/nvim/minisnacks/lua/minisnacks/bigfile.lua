@@ -20,8 +20,6 @@ local defaults = {
       vim.cmd([[NoMatchParen]])
     end
     minisnacks.util.wo(0, { foldmethod = "manual", statuscolumn = "", conceallevel = 0 })
-    vim.b.minianimate_disable = true
-    vim.b.minihipatterns_disable = true
     vim.schedule(function()
       if vim.api.nvim_buf_is_valid(ctx.buf) then
         vim.bo[ctx.buf].syntax = ctx.ft

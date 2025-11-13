@@ -60,11 +60,11 @@ local opts = {
     select = {
       enable = true,
       keymaps = {
-        ["ac"] = "@comment.outer",
+        -- Useful for uncommenting a block comment in comment.nvim 
+        ["oc"] = "@comment.outer",
+
         ["of"] = "@function.outer",
-        ["uf"] = "@function.inner",
-        ["oc"] = "@class.outer",
-        ["uc"] = "@class.inner"
+        ["uf"] = "@function.inner"
       }
     }
   }
