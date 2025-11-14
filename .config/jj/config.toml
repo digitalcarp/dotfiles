@@ -3,6 +3,7 @@
 # References
 # - [Steve's Jujutsu Tutorial](https://steveklabnik.github.io/jujutsu-tutorial/)
 # - [thoughtpolice/jjconfig.toml](https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6)
+# - [zerowidth's jj tips and tricks](https://zerowidth.com/2025/jj-tips-and-tricks/)
 
 [user]
 name = "Daniel Gao"
@@ -12,7 +13,7 @@ email = "daniel.gao.work@gmail.com"
 default-command = "log"
 
 diff-formatter = ":git"
-diff-editor = ":builtin"
+diff-editor = "gitpatch"  # See [merge-tools.gitpatch]
 merge-editor = ":builtin"
 
 pager=["delta", "--pager", "less -FRX"]
@@ -24,6 +25,24 @@ pager=["delta", "--pager", "less -FRX"]
 
 [--scope.ui]
 pager = "delta"
+
+# Use a familiar interactive diff picker like that of git add -p
+[merge-tools.gitpatch]
+program = "sh"
+edit-args = ["-c", '''
+  set -eu
+  rm -f "$right/JJ-INSTRUCTIONS"
+  git -C "$left" init -q
+  git -C "$left" add -A
+  git -C "$left" commit -q -m baseline --allow-empty
+  mv "$left/.git" "$right"
+  git -C "$right" add --intent-to-add --ignore-removal .
+  git -C "$right" add -p
+  git -C "$right" diff-index --quiet --cached HEAD && { echo "No changes done, aborting split."; exit 1; }
+  git -C "$right" commit -q -m split
+  git -C "$right" reset -q --hard
+'''
+]
 
 [git]
 private-commits = "blacklist()"
