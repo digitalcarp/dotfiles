@@ -9,8 +9,14 @@
 name = "Daniel Gao"
 email = "daniel.gao.work@gmail.com"
 
+# Uncomment to enable code signing
+#[signing]
+#behavior = "own"
+#backend = "gpg"
+#signingkey = "DEADBEEF"
+
 [ui]
-default-command = "log"
+default-command = "log_curr"
 
 diff-formatter = ":git"
 diff-editor = "gitpatch"  # See [merge-tools.gitpatch]
@@ -53,8 +59,6 @@ private-commits = "blacklist()"
 'at' = '@'
 
 "user(x)" = "author(x) | committer(x)"
-# Modify per dev environment
-# "mine()" = "user(\"placeholder@domain.com\")"
 
 # By default, show the repo trunk, the remote bookmarks, and all remote tags.
 # We don't want to change these in most cases, but in some repos it's useful.
@@ -90,6 +94,9 @@ d = ["describe"]
 e = ["edit"]
 en = ["next", "--edit"]
 
+# Show all my current stacks of work
+log_curr = ["log", "-r", "@ | stack(mine() | @) | trunk()"]
+# Show current work and all bookmarks in short form
 l = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 
 n = ["new"]
