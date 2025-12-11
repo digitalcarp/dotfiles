@@ -45,14 +45,15 @@ systemctl enable --now sshd.service
 ssh-add ~/.ssh/id_ed25519
 # Add SSH key to GitHub
 cat ~/.ssh/id_ed25519.pub
-```
 
-```bash
 # Install nftables and uninstall iptables
 pacman -Syu iptables-nft
 cp /etc/nftables.conf /etc/nftables.conf.bak
 cp etc/nftables.conf /etc/nftables.conf
 systemctl enable --now nftables.service
+
+# Enable periodic TRIM for SSDs
+sudo systemctl enable --now fstrim.timer
 ```
 
 ```bash
