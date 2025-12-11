@@ -56,6 +56,11 @@ sudo apt autoremove --purge
 sudo reboot
 ```
 
+### log2ram
+
+Follow instructions from [GitHub](https://github.com/azlux/log2ram). The
+default configuration (128MB log folder) is sufficient.
+
 ### Firewalls
 
 See [Firewalls](https://docs.pi-hole.net/main/prerequisites/#firewalls) to
