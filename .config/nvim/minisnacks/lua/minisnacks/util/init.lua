@@ -1,4 +1,5 @@
-ks.util
+---@private
+---@class minisnacks.util
 local M = {}
 
 M.meta = {
