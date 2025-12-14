@@ -60,6 +60,9 @@ sign-on-push = true
 [revset-aliases]
 "user(x)" = "author(x) | committer(x)"
 
+# Override per repo in .jj/repo/config.toml
+"upstream()" = "trunk()"
+
 # Useful to ignore this, in many repos. For repos like `jj` these are
 # consistently populated with a bunch of auto-generated commits, so ignoring it
 # is often nice.
@@ -92,14 +95,15 @@ e = ["edit"]
 en = ["next", "--edit"]
 
 # Show current work and all remote bookmarks in short form
-l = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
+l = ["log", "-r", "@ | ancestors(remote_bookmarks(), 2) | trunk() | upstream()"]
 # Show all my current stacks of work
-lc = ["log", "-r", "@ | stack(mine() | @) | trunk()"]
+lc = ["log", "-r", "@ | stack(mine() | @) | trunk() | upstream()"]
 # Show ancestry path to trunk
-la = ["log", "-r", "base(@)::@ | trunk()"]
-laa = ["log", "-r", "base(@)::@ | stack(heads(descendants(base(@)::@))) | base(@)::trunk()"]
+la = ["log", "-r", "base(@)::@ | trunk() | upstream()"]
+laa = ["log", "-r", "base(@)::@ | stack(heads(descendants(base(@)::@))) | base(@)::trunk() | upstream()"]
 # Show trunk
 lt = ["log", "-r", "::trunk()"]
+ltu = ["log", "-r", "::trunk() | ::upstream()"]
 
 n = ["new"]
 nb = ["new", "-B", "@"]
