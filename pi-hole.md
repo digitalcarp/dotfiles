@@ -7,6 +7,7 @@ This document is a distilled version of the following:
 
 - [Pi-hole documentation](https://docs.pi-hole.net/)
 - [nftables + certbot on Rasbian](https://discourse.pi-hole.net/t/guide-nftables-certbot-on-raspbian-not-for-docker-setups/78644)
+- [TimInTech's Comprehensive Guide](https://github.com/TimInTech/Pi-hole-v6.0---Comprehensive-Guide)
 
 ## Setup
 
@@ -155,3 +156,53 @@ the steps outlined [here](https://discourse.pi-hole.net/t/how-do-i-configure-my-
 
 Follow the steps for installing [unbound](https://docs.pi-hole.net/guides/dns/unbound/)
 to configure the Pi-hole as a recursive DNS.
+
+```bash
+# Install some additional utilities for unbound.
+# These may be already installed as part of unbound package.
+sudo apt install unbound-anchor unbound-host
+```
+
+Below are some additional changes to the unbound config to help with occasional
+performance slowdowns. They should be added to
+`/etc/unbound/unbound.conf.d/pi-hole.conf`. The config is inspired by
+[this reddit post](https://www.reddit.com/r/pihole/comments/d9j1z6/unbound_as_recursive_dns_server_slow_performance/)
+and [nlnetlabs](https://nlnetlabs.nl/documentation/unbound/howto-optimise/).
+
+```conf
+server:
+    # These options should be added to the existing server configuration,
+    # overwriting existing values if they're there.
+
+    # This attempts to reduce latency by serving the outdated record before
+    # updating it instead of the other way around. Alternatively, increase
+    # cache-min-ttl to e.g. 3600.
+    cache-min-ttl: 0
+    serve-expired: yes
+
+    # More cache memory (rrset = msg * 2)
+    msg-cache-size: 8m
+    rrset-cache-size: 16m
+
+    # Larger socket buffer. sysctl config for net.core.rmem_max needs to be
+    # modified to 4m as well.
+    so-rcvbuf: 4m
+```
+
+The OS needs to allow `so-rcvbuf` to be 4MiB, so add
+`/etc/sysctl.d/99-pihole.conf`.
+
+```conf
+net.core.rmem_max = 4194304
+```
+
+### Tuning
+
+The default DNS rate limit of 1000 queries in a 60 second window can cause
+random DNS resolution problems. This is especially the case when the router
+config causes all queries to appear to be made from the same client.
+
+```bash
+sudo pihole-FTL --config dns.rateLimit.count 4096
+sudo pihole-FTL --config dns.rateLimit.interval 60
+```
