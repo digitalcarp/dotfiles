@@ -29,9 +29,11 @@ DHCP range.
 sudo vi /etc/dhcpcd.conf
 
 interface eth0 # or wlan0 for Wi-Fi
-static ip_address=192.168.0.254/24 # Your desired IP/subnet mask
-static routers=192.168.0.1 # Your router's IP (Gateway)
-static domain_name_servers=127.0.0.1 # Pi-hole itself
+# Desired static IP with standard subnet mask suffix
+static ip_address=192.168.0.254/24
+static routers=192.168.0.1 # Router/gateway IP
+# Loopback to unbound DNS first and use Cloudflare public DNS as backup
+static domain_name_servers=127.0.0.1 1.1.1.1 1.0.0.1
 ```
 
 Verify the IP address by scanning your LAN using `nmap -sn 192.168.0.0/24`
@@ -106,7 +108,11 @@ table inet filter {
         tcp dport { 80, 443 } accept
 
         # Allow DNS (port 53 UDP and TCP)
+        tcp dport 53 accept
         udp dport 53 accept
+
+        # Allow NTP (port 123)
+        udp dport 123 accept
     }
 
     chain forward {
@@ -197,6 +203,9 @@ net.core.rmem_max = 4194304
 ```
 
 ### Tuning
+
+Turn on expert settings in the admin web server by going to any settings page
+and toggling from basic to expert using the switch near the top right.
 
 The default DNS rate limit of 1000 queries in a 60 second window can cause
 random DNS resolution problems. This is especially the case when the router
