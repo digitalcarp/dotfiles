@@ -169,8 +169,8 @@ to configure the Pi-hole as a recursive DNS.
 sudo apt install unbound-anchor unbound-host
 ```
 
-Below are some additional changes to the unbound config to help with occasional
-performance slowdowns. They should be added to
+Below are some additional changes to the unbound config to help with admin and
+occasional performance slowdowns. They should be added to
 `/etc/unbound/unbound.conf.d/pi-hole.conf`. The config is inspired by
 [this reddit post](https://www.reddit.com/r/pihole/comments/d9j1z6/unbound_as_recursive_dns_server_slow_performance/)
 and [nlnetlabs](https://nlnetlabs.nl/documentation/unbound/howto-optimise/).
@@ -179,6 +179,9 @@ and [nlnetlabs](https://nlnetlabs.nl/documentation/unbound/howto-optimise/).
 server:
     # These options should be added to the existing server configuration,
     # overwriting existing values if they're there.
+
+    # control-enable: yes
+    # control-interface: /run/unbound.ctl
 
     # This attempts to reduce latency by serving the outdated record before
     # updating it instead of the other way around. Alternatively, increase
