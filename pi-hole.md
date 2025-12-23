@@ -169,8 +169,8 @@ to configure the Pi-hole as a recursive DNS.
 sudo apt install unbound-anchor unbound-host
 ```
 
-Below are some additional changes to the unbound config to help with occasional
-performance slowdowns. They should be added to
+Below are some additional changes to the unbound config to help with
+performance. They should be added to
 `/etc/unbound/unbound.conf.d/pi-hole.conf`. The config is inspired by
 [this reddit post](https://www.reddit.com/r/pihole/comments/d9j1z6/unbound_as_recursive_dns_server_slow_performance/)
 and [nlnetlabs](https://nlnetlabs.nl/documentation/unbound/howto-optimise/).
@@ -201,6 +201,10 @@ The OS needs to allow `so-rcvbuf` to be 4MiB, so add
 ```conf
 net.core.rmem_max = 4194304
 ```
+
+Enable unbound-control by running `sudo unbound-control-setup`. This assumes
+that the `/etc/unbound/unbound.conf.d/remote-control.conf` was created
+automatically.
 
 ### Tuning
 
