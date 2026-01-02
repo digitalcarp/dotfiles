@@ -206,6 +206,23 @@ Enable unbound-control by running `sudo unbound-control-setup`. This assumes
 that the `/etc/unbound/unbound.conf.d/remote-control.conf` was created
 automatically.
 
+To prevent unbound from starting before NTP sync finishes and only responding
+with SERVFAIL, only start the unbound service after NTP sync succeeds. This
+requires configuring the pihole to use public DNS servers directly as backups.
+
+```bash
+sudo systemctl stop unbound
+sudo systemctl edit unbound.service
+
+# Add the following to the override conf
+# + [Unit]
+# + After=time-sync.target
+# + Wants=time-sync.target
+
+sudo systemctl daemon-reload
+sudo systemctl start unbound
+```
+
 ### Tuning
 
 Turn on expert settings in the admin web server by going to any settings page
