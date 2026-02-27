@@ -109,14 +109,15 @@ pacman -Syu sddm-kcm brightnessctl kscreen kgamma plasma-nm plasma-pa \
 pacman -Syu ffmpegthumbs kdegraphics-thumbnailers kimageformats kio-extras \
   icoutils noto-sans noto-color-emoji qt-imageformats
 
-pacman -Syu powerdevil power-profiles-daemon
+pacman -Syu bluez bluez-utils powerdevil power-profiles-daemon
+systemctl enable --now bluetooth.service
 systemctl enable --now power-profiles-daemon.service
 ```
 
 #### GUI Apps
 
 ```bash
-pacman -Syu dolphin konsole firefox vlc okular spectacle gwenview
+pacman -Syu dolphin konsole firefox bluedevil vlc okular spectacle gwenview
 ```
 
 #### Font
