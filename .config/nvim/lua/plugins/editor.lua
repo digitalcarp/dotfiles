@@ -30,11 +30,17 @@ local function setup_nvim_autopairs()
       :only_cr(cond.is_end_line())
       :replace_map_cr(function (opts)
         return "<C-g>u<BS><CR>},<C-c>O"
-      end)
+      end),
+    -- Reimplement nvim-autopairs builtin rules
+    Rule('<!--', '-->', { 'html', 'markdown', 'xml' }):with_cr(cond.none()),
+    Rule('```', '```', { 'markdown', 'gitcommit' })
+      :with_pair(cond.not_before_char('`', 3)),
+    Rule('```.*$', '```', { 'markdown', })
+      :only_cr():use_regex(true),
   }
 
   npairs.setup(opts)
-  npairs.remove_rule('{')
+  npairs.clear_rules()
   npairs.add_rules(rules)
 end
 
