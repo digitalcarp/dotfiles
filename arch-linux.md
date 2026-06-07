@@ -27,19 +27,19 @@ EDITOR=nvim visudo /etc/sudoers
 
 ```bash
 # Initialize /etc/hosts
-cp etc/hosts /etc/hosts
+sudo cp etc/hosts /etc/hosts
 
 # Enable NetworkManager and connect to WiFi
-systemctl disable systemd-networkd.service
-systemctl enable --now NetworkManager.service
-nmcli device wifi list
-nmcli device wifi connect <SSID> --ask
+sudo systemctl disable systemd-networkd.service
+sudo systemctl enable --now NetworkManager.service
+sudo nmcli device wifi list
+sudo nmcli device wifi connect <SSID> --ask
 ```
 
 ### Utilities
 
 ```bash
-pacman -Syu openssh
+sudo pacman -Syu openssh
 ssh-keygen -t ed25519 -C <email>
 systemctl enable --now sshd.service
 ssh-add ~/.ssh/id_ed25519
@@ -47,24 +47,24 @@ ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
 
 # Install nftables and uninstall iptables
-pacman -Syu iptables-nft
+sudo pacman -Syu iptables-nft
 cp /etc/nftables.conf /etc/nftables.conf.bak
 cp etc/nftables.conf /etc/nftables.conf
-systemctl enable --now nftables.service
+sudo systemctl enable --now nftables.service
 
 # Enable periodic TRIM for SSDs
 sudo systemctl enable --now fstrim.timer
 ```
 
 ```bash
-pacman -Syu tmux fzf ripgrep fd git just bat git-delta glow \
+sudo pacman -Syu tmux fzf ripgrep fd git just bat git-delta glow \
   htop unzip ffmpeg imagemagick gettext tree
 ```
 
 #### AUR Helper
 
 ```bash
-pacman -Syu base-devel
+sudo pacman -Syu base-devel
 mkdir ~/aur
 cd !$
 # Check with https://aur.archlinux.org/packages/yay
@@ -87,13 +87,13 @@ echo "export PATH=$PATH:$HOME/tools/bin" >> ~/.bashrc
 ### Graphics Driver
 
 ```bash
-pacman -Syu nvidia-open nvidia-utils
+sudo pacman -Syu nvidia-open nvidia-utils
 ```
 
 ### KDE Plasma
 
 ```bash
-pacman -Syu sddm plasma-desktop
+sudo pacman -Syu sddm plasma-desktop
 ```
 
 Setup SDDM by creating `/etc/sddm.conf.d/autologin.conf`.
@@ -104,26 +104,26 @@ Session=Plasma (Wayland)
 ```
 
 ```bash
-pacman -Syu sddm-kcm brightnessctl kscreen kgamma plasma-nm plasma-pa \
+sudo pacman -Syu sddm-kcm brightnessctl kscreen kgamma plasma-nm plasma-pa \
   phonon-qt6-vlc
-pacman -Syu ffmpegthumbs kdegraphics-thumbnailers kimageformats kio-extras \
-  icoutils noto-sans noto-color-emoji qt-imageformats
+sudo pacman -Syu ffmpegthumbs kdegraphics-thumbnailers kimageformats \
+  kio-extras icoutils noto-sans noto-color-emoji qt-imageformats
 
-pacman -Syu bluez bluez-utils powerdevil power-profiles-daemon
-systemctl enable --now bluetooth.service
-systemctl enable --now power-profiles-daemon.service
+sudo pacman -Syu bluez bluez-utils powerdevil power-profiles-daemon
+sudo systemctl enable --now bluetooth.service
+sudo systemctl enable --now power-profiles-daemon.service
 ```
 
 #### GUI Apps
 
 ```bash
-pacman -Syu dolphin konsole firefox bluedevil vlc okular spectacle gwenview
+sudo pacman -Syu dolphin konsole firefox bluedevil vlc okular spectacle gwenview
 ```
 
 #### Font
 
 ```bash
-pacman -Syu ttf-dejavu-nerd ttf-roboto noto-fonts noto-fonts-cjk adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts
+sudo pacman -Syu ttf-dejavu-nerd ttf-roboto noto-fonts noto-fonts-cjk
 ```
 
 ##### Manual Install
@@ -142,39 +142,39 @@ Set fonts using system settings and konsole.
 #### C/C++
 
 ```bash
-pacman -Syu gcc clang cmake ninja gdb
+sudo pacman -Syu gcc clang cmake ninja gdb
 ```
 
 #### Python
 
 ```bash
-pacman -Syu python uv
+sudo pacman -Syu python uv
 ```
 
 #### Rust
 
 ```bash
-pacman -Syu rustup
+sudo pacman -Syu rustup
 rustup toolchain stable
 ```
 
 ### Key Mappings
 
 ```bash
-yay -Syu kanata
+sudo yay -Syu kanata
 
 # Create user/group for kanata to read uinput (must be system group)
-groupadd -r uinput
-echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' > /etc/udev/rules.d/99-kanata.rules
-useradd --no-create-home --groups input,uinput --shell /bin/false --user-group kanata
+sudo groupadd -r uinput
+sudo echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' > /etc/udev/rules.d/99-kanata.rules
+sudo useradd --no-create-home --groups input,uinput --shell /bin/false --user-group kanata
 
-mkdir /etc/kanata
+sudo mkdir /etc/kanata
 # Use the version provided by dotfile repo
-cp <config>.kbd /etc/kanata/kanata.kbd
+sudo cp <config>.kbd /etc/kanata/kanata.kbd
 
 # See dotfiles/etc/systemd/system/kanata.service
-cp kanata.service /etc/systemd/system/kanata.service
-systemctl enable --now kanata.service
+sudo cp kanata.service /etc/systemd/system/kanata.service
+sudo systemctl enable --now kanata.service
 ```
 
 ## GRUB
