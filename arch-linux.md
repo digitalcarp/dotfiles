@@ -192,3 +192,28 @@ GRUB_SAVED_DEFAULT="true"
 ```
 
 Apply changes by running `sudo grub-mkconfig -o /boot/grub/grub.cfg`.
+
+## Color Management
+
+```bash
+sudo pacman -Syu colord colord-kde displaycal
+# Find USB ID for colorimeter and allow DisplayCAL to access
+lsusb
+# Add udev rules file with the following (possibly changing IDs):
+# SUBSYSTEM=="usb", ATTR{idVendor}=="0765", ATTR{idProduct}=="5020", TAG+="uaccess"
+# SUBSYSTEMS=="usb", ATTR{idVendor}=="0765", ATTR{idProduct}=="5020", TAG+="uaccess"
+sudo nvim /etc/udev/rules.d/55-displaycal.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
+# Generate ICC profiles...
+displaycal
+
+# Set color profile ICC file in KDE system settings:
+# ~/.local/share/DisplayCAL/storage/  ... path to icc
+```
+
+Enable color management in Firefox by going to `about:config` and changing:
+
+- `gfx.color_management.mode` to 1
+- `gfx.color_management.rendering_intent` to 1
