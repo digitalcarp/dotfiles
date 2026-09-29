@@ -1,88 +1,62 @@
-local opts = {
-  ensure_installed = {
-    -- Always need to be installed as required by nvim-treesitter
-    "c",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "vim",
-    "vimdoc",
-    "query",
-    -- Custom required
-    "bash",
-    "cmake",
-    "comment",
-    "cpp",
-    "css",
-    "csv",
-    "diff",
-    "html",
-    "ini",
-    "javascript",
-    "json",
-    "just",
-    "make",
-    "python",
-    "regex",
-    "toml",
-    "xml",
-    "yaml",
-
-    -- Optional (uncomment as needed)
-
-    -- "latex",
-    -- "perl",
-    -- "rst",
-    -- "rust",
-    -- "sql",
-    -- "typescript",
-    -- "verilog",
-    -- "vhdl",
-    -- "tcl",
-  },
-  sync_install = false,
-  auto_install = false, -- Don't have tree-sitter CLI installed locally
-  highlight = {
-    enable = true,
-    -- Disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      else
-        return false
-      end
-    end
-  },
-  indent = { enable = true },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        -- Useful for uncommenting a block comment in comment.nvim 
-        ["oc"] = "@comment.outer",
-
-        ["of"] = "@function.outer",
-        ["uf"] = "@function.inner"
-      }
-    }
-  }
+local languages = {
+  "bash",
+  "cmake",
+  "cpp",
+  "css",
+  "csv",
+  "ini",
+  "javascript",
+  "just",
+  "json",
+  "make",
+  "python",
+  "rust",
+  "systemverilog",
+  "tcl",
+  "toml",
+  "typescript",
+  "vhdl",
+  "xml",
+  "yaml"
 }
+
+local function setup_treesitter()
+  require("nvim-treesitter").install(languages)
+
+  vim.api.nvim_create_autocmd("FileType", {
+    callback = function(args)
+      local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+      if not lang then
+        return
+      end
+
+      local max_filesize = 1024 * 1024 -- 1 MB
+      local stats = vim.uv.fs_stat(args.file)
+      if stats and stats.size > max_filesize then
+        return
+      end
+
+      if vim.treesitter.query.get(lang, "highlights") then
+        vim.treesitter.start()
+      end
+
+      if vim.treesitter.query.get(lang, "indents") then
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
+
+      -- if vim.treesitter.query.get(lang, "folds") then
+      --   vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      --   vim.wo[0][0].foldmethod = "expr"
+      -- end
+    end
+  })
+end
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      branch = "master"
-    },
-    -- Official docs say they don't support lazy loading, but it seems to work
-    event = "VeryLazy",
+    lazy = false,
     build = ":TSUpdate",
-    config = function()
-      require('nvim-treesitter.configs').setup(opts)
-    end
+    config = setup_treesitter
   }
 }
