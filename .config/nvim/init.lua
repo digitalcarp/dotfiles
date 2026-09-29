@@ -54,9 +54,6 @@ set.expandtab = true
 set.linebreak = true
 set.wrap = false
 
--- Either use treesitter indent or this but not both
--- set.smartindent = true
-
 ----------------
 -- Navigation --
 ----------------
@@ -147,7 +144,7 @@ vim.api.nvim_create_autocmd(
     callback = function()
       local ft = vim.opt_local.filetype:get()
       -- Ignore git messages
-      if (ft:match('commit') or ft:match('rebase')) then
+      if (ft:match("commit") or ft:match("rebase")) then
         return
       end
       -- Go to position of last saved edit

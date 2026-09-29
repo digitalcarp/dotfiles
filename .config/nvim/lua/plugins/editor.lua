@@ -32,10 +32,10 @@ local function setup_nvim_autopairs()
         return "<C-g>u<BS><CR>},<C-c>O"
       end),
     -- Reimplement nvim-autopairs builtin rules
-    Rule('<!--', '-->', { 'html', 'markdown', 'xml' }):with_cr(cond.none()),
-    Rule('```', '```', { 'markdown', 'gitcommit' })
+    Rule("<!--", "-->", { "html", "markdown", "xml" }):with_cr(cond.none()),
+    Rule("```", "```", { "markdown", "gitcommit" })
       :with_pair(cond.not_before_char('`', 3)),
-    Rule('```.*$', '```', { 'markdown', })
+    Rule("```.*$", "```", { "markdown", "gitcommit" })
       :only_cr():use_regex(true),
   }
 
@@ -110,7 +110,7 @@ return {
 
   -- Automatic parenthesis/brace insertion
   {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = setup_nvim_autopairs
   }
